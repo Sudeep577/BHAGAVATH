@@ -1,0 +1,897 @@
+.desktop-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.nav-link-button {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subpage-hero {
+    text-align: center;
+    padding: 8px 0 34px;
+    animation: rise-in 0.8s ease-out both;
+}
+
+.subpage-kicker {
+    margin: 0 0 10px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+}
+
+.subpage-title {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.4rem, 4.5vw, 3.9rem);
+    line-height: 0.98;
+}
+
+.subpage-copy {
+    width: min(100%, 720px);
+    margin: 18px auto 10px;
+    color: var(--muted);
+    line-height: 1.85;
+}
+
+.subpage-meta {
+    margin: 0;
+    color: var(--gold-strong);
+}
+
+.subpage-card {
+    background: var(--surface-strong);
+    border: 1px solid var(--panel-border);
+    box-shadow: var(--shadow);
+    border-radius: 18px;
+    padding: 28px;
+    backdrop-filter: blur(20px);
+    animation: rise-in 0.9s ease-out both;
+}
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 28px;
+}
+
+.profile-side-card,
+.profile-main-card,
+.history-main-card,
+.history-side-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.profile-side-card {
+    display: grid;
+    gap: 20px;
+    align-content: start;
+}
+
+.religion-avatar-large {
+    width: 96px;
+    height: 96px;
+    border-radius: 28px;
+    display: grid;
+    place-items: center;
+    font-family: "Playfair Display", serif;
+    font-size: 2.2rem;
+    color: #231402;
+    background: radial-gradient(circle at 30% 30%, #ffe9ae, #deae49 65%, #885d16);
+    box-shadow: 0 0 32px rgba(228, 184, 95, 0.24);
+}
+
+body[data-religion="muslim"] .religion-avatar-large {
+    color: #07321f;
+    background: radial-gradient(circle at 30% 30%, #edfff3, #90ddb0 65%, #2f7a56);
+    box-shadow: 0 0 32px rgba(124, 211, 155, 0.24);
+}
+
+body[data-religion="christian"] .religion-avatar-large {
+    color: #35517b;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #e3edff 65%, #88a5d6);
+    box-shadow: 0 0 32px rgba(136, 167, 218, 0.24);
+}
+
+.profile-side-card h3,
+.profile-main-card h3,
+.history-main-card h3,
+.history-side-card h3 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+}
+
+.profile-summary-text,
+.profile-side-note,
+.history-side-copy {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.profile-read-grid {
+    display: grid;
+    gap: 14px;
+}
+
+.profile-read-item {
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.profile-read-item span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.profile-read-item strong {
+    display: block;
+    margin-top: 6px;
+    color: var(--gold-strong);
+}
+
+.profile-form {
+    display: grid;
+    gap: 20px;
+}
+
+.profile-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.profile-field {
+    display: grid;
+    gap: 10px;
+}
+
+.profile-field label {
+    color: var(--gold-strong);
+    font-weight: 600;
+}
+
+.profile-field input,
+.profile-field select {
+    width: 100%;
+    padding: 15px 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    outline: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+body[data-religion="christian"] .profile-field input,
+body[data-religion="christian"] .profile-field select {
+    background: rgba(122, 147, 191, 0.08);
+}
+
+.profile-field input:focus,
+.profile-field select:focus {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
+    transform: translateY(-1px);
+}
+
+.field-inline-error,
+.page-status {
+    min-height: 22px;
+    margin: 0;
+    color: var(--muted);
+}
+
+.page-status.status-error,
+.field-inline-error {
+    color: var(--danger);
+}
+
+.page-status.status-success {
+    color: var(--success);
+}
+
+.section-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+}
+
+.history-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) 300px;
+    gap: 28px;
+}
+
+.history-thread {
+    max-height: 72vh;
+    overflow-y: auto;
+    display: grid;
+    gap: 18px;
+    padding-right: 4px;
+    scroll-behavior: smooth;
+}
+
+.conversation-group {
+    display: grid;
+    gap: 10px;
+    padding: 18px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.history-message {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.history-message.user {
+    justify-content: flex-end;
+}
+
+.history-message.ai {
+    justify-content: flex-start;
+}
+
+.history-bubble {
+    max-width: min(100%, 680px);
+    padding: 14px 16px;
+    border-radius: 16px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+.history-message.user .history-bubble {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.history-message.ai .history-bubble {
+    background: var(--response-surface);
+    border: 1px solid var(--panel-border);
+}
+
+.history-bubble-meta {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.empty-history {
+    padding: 28px 22px;
+    border-radius: 16px;
+    text-align: center;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ===== REDESIGNED HISTORY PAGE ===== */
+
+.history-page-header {
+    margin-bottom: 28px;
+    animation: rise-in 0.7s ease-out both;
+}
+
+.history-page-header__top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.history-page-title {
+    margin: 6px 0 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.05;
+}
+
+.history-page-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.history-count-badge {
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--gold-strong);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+}
+
+.history-clear-btn {
+    padding: 8px 18px !important;
+    font-size: 0.88rem;
+}
+
+/* History single-column layout */
+.history-page-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 860px;
+    margin-inline: auto;
+    animation: rise-in 0.9s ease-out 0.08s both;
+}
+
+/* Chat thread panel */
+.history-chat-panel {
+    min-height: 400px;
+}
+
+.history-chat-thread {
+    display: grid;
+    gap: 20px;
+    max-height: 78vh;
+    overflow-y: auto;
+    padding-right: 6px;
+    scroll-behavior: smooth;
+}
+
+.history-chat-thread::-webkit-scrollbar {
+    width: 5px;
+}
+
+.history-chat-thread::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.history-chat-thread::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+}
+
+/* Conversation group — each Q&A pair */
+.history-convo {
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: border-color 220ms ease, background 220ms ease;
+    overflow: hidden;
+}
+
+.history-convo:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Collapsed preview row */
+.history-convo__preview {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    background: none;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.95rem;
+    text-align: left;
+    cursor: pointer;
+    transition: background 180ms ease;
+}
+
+.history-convo__preview:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.history-convo__preview-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    font-size: 0.88rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--gold-strong);
+}
+
+.history-convo__preview-body {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    gap: 4px;
+}
+
+.history-convo__preview-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.history-convo__preview-time {
+    font-size: 0.76rem;
+    color: var(--muted);
+}
+
+.history-convo__chevron {
+    font-size: 1.4rem;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: transform 280ms ease;
+}
+
+/* ===== HISTORY MODAL ===== */
+
+.hmodal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(4, 6, 18, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hmodal-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.hmodal-active {
+    overflow: hidden;
+}
+
+.hmodal-box {
+    width: 100%;
+    max-width: 720px;
+    max-height: 82vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    background: var(--surface-strong, rgba(14, 18, 38, 0.96));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 0 0 1px rgba(228, 184, 95, 0.08),
+        0 24px 80px rgba(0, 0, 0, 0.55),
+        0 0 60px rgba(228, 184, 95, 0.06);
+    transform: scale(0.92) translateY(16px);
+    transition: transform 0.3s ease;
+}
+
+body[data-religion="muslim"] .hmodal-box {
+    box-shadow:
+        0 0 0 1px rgba(124, 211, 155, 0.08),
+        0 24px 80px rgba(0, 0, 0, 0.55),
+        0 0 60px rgba(124, 211, 155, 0.06);
+}
+
+body[data-religion="christian"] .hmodal-box {
+    box-shadow:
+        0 0 0 1px rgba(136, 167, 218, 0.08),
+        0 24px 80px rgba(0, 0, 0, 0.55),
+        0 0 60px rgba(136, 167, 218, 0.06);
+}
+
+.hmodal-overlay.is-open .hmodal-box {
+    transform: scale(1) translateY(0);
+}
+
+.hmodal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+}
+
+.hmodal-title {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+}
+
+.hmodal-time {
+    flex: 1;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+}
+
+.hmodal-close {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--muted);
+    font-size: 1.3rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.hmodal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+.hmodal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    display: grid;
+    gap: 18px;
+}
+
+.hmodal-body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.hmodal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.hmodal-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+}
+
+/* Message row */
+.history-msg {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.history-msg--user {
+    flex-direction: row-reverse;
+}
+
+.history-msg__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.history-msg--user .history-msg__avatar {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--gold-strong);
+}
+
+.history-msg--ai .history-msg__avatar {
+    font-family: "Playfair Display", serif;
+    color: #231402;
+    background: radial-gradient(circle at 30% 30%, #ffe9ae, #deae49 65%, #885d16);
+    box-shadow: 0 4px 12px rgba(228, 184, 95, 0.2);
+}
+
+body[data-religion="muslim"] .history-msg--ai .history-msg__avatar {
+    color: #07321f;
+    background: radial-gradient(circle at 30% 30%, #edfff3, #90ddb0 65%, #2f7a56);
+    box-shadow: 0 4px 12px rgba(124, 211, 155, 0.2);
+}
+
+body[data-religion="christian"] .history-msg--ai .history-msg__avatar {
+    color: #35517b;
+    background: radial-gradient(circle at 30% 30%, #fff, #e3edff 65%, #88a5d6);
+    box-shadow: 0 4px 12px rgba(136, 167, 218, 0.2);
+}
+
+.history-msg__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.history-msg__label {
+    margin: 0 0 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+}
+
+.history-msg--user .history-msg__label {
+    text-align: right;
+}
+
+.history-msg__text {
+    margin: 0;
+    padding: 14px 18px;
+    border-radius: 18px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 0.96rem;
+}
+
+.history-msg--user .history-msg__text {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top-right-radius: 4px;
+}
+
+.history-msg--ai .history-msg__text {
+    background: var(--response-surface);
+    border: 1px solid var(--panel-border);
+    border-top-left-radius: 4px;
+}
+
+/* Empty state */
+.history-empty-state {
+    padding: 48px 24px;
+    border-radius: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.history-empty-state__icon {
+    display: block;
+    font-size: 2.4rem;
+    margin-bottom: 14px;
+    opacity: 0.6;
+}
+
+.history-empty-state__title {
+    margin: 0 0 8px;
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+}
+
+.history-empty-state__copy {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 420px;
+    margin-inline: auto;
+}
+
+/* Info sidebar */
+.history-info-panel {
+    display: grid;
+    gap: 18px;
+    align-content: start;
+    position: sticky;
+    top: 108px;
+}
+
+.history-info-card {
+    padding: 22px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: grid;
+    gap: 12px;
+}
+
+.history-info-card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    color: #231402;
+    background: radial-gradient(circle at 30% 30%, #ffe9ae, #deae49 65%, #885d16);
+    box-shadow: 0 8px 20px rgba(228, 184, 95, 0.18);
+}
+
+body[data-religion="muslim"] .history-info-card__icon {
+    color: #07321f;
+    background: radial-gradient(circle at 30% 30%, #edfff3, #90ddb0 65%, #2f7a56);
+    box-shadow: 0 8px 20px rgba(124, 211, 155, 0.18);
+}
+
+body[data-religion="christian"] .history-info-card__icon {
+    color: #35517b;
+    background: radial-gradient(circle at 30% 30%, #fff, #e3edff 65%, #88a5d6);
+    box-shadow: 0 8px 20px rgba(136, 167, 218, 0.18);
+}
+
+.history-info-card h3 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 1.2rem;
+}
+
+.history-info-copy {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.75;
+    font-size: 0.92rem;
+}
+
+.history-info-stats {
+    display: grid;
+    gap: 10px;
+}
+
+.history-stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.history-stat-label {
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
+.history-stat-item strong {
+    color: var(--gold-strong);
+    font-size: 0.92rem;
+}
+
+.history-info-actions {
+    display: grid;
+    gap: 10px;
+}
+
+.history-info-actions .secondary-button,
+.history-info-actions .nav-link-button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+@media (min-width: 769px) {
+    .subpage-card {
+        margin-top: 6px;
+    }
+
+    .profile-side-card,
+    .profile-main-card,
+    .history-main-card,
+    .history-side-card,
+    .conversation-group,
+    .profile-read-item {
+        transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+    }
+
+    .profile-side-card:hover,
+    .profile-main-card:hover,
+    .history-main-card:hover,
+    .history-side-card:hover,
+    .conversation-group:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .profile-main-card h3,
+    .history-main-card h3 {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 960px) {
+    .profile-layout,
+    .history-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .subpage-hero {
+        min-height: auto;
+        padding: 10px 0 18px;
+    }
+
+    .subpage-card {
+        padding: 18px 16px;
+    }
+
+    .profile-form-grid,
+    .mobile-profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .history-chat-thread {
+        max-height: none;
+    }
+
+    .history-page-header__top {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .history-page-header__actions {
+        justify-content: space-between;
+    }
+
+    .history-convo__preview {
+        padding: 14px 16px;
+        gap: 10px;
+    }
+
+    .history-convo__preview-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .hmodal-overlay {
+        padding: 12px;
+    }
+
+    .hmodal-box {
+        max-height: 90vh;
+        border-radius: 16px;
+    }
+
+    .hmodal-header {
+        padding: 16px 18px;
+    }
+
+    .hmodal-body {
+        padding: 18px;
+        gap: 14px;
+    }
+
+    .history-msg__avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 0.78rem;
+    }
+
+    .history-msg__text {
+        padding: 12px 14px;
+        font-size: 0.92rem;
+    }
+
+    .section-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .section-actions .secondary-button,
+    .section-actions .nav-link-button,
+    .section-actions .pwa-install-button,
+    .section-actions button {
+        width: 100%;
+    }
+}

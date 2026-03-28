@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBhagavanth | Profile</title>
+    <meta name="description" content="View and update your spiritual profile for MyBhagavanth.">
+    <meta name="theme-color" content="#0a1020">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icon-192.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon-192.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="subpages.css">
+</head>
+<body>
+    <div class="cosmic-bg" aria-hidden="true">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="stars"></div>
+    </div>
+
+        <header id="desktopSiteHeader" class="desktop-site-header">
+            <div class="desktop-site-header__inner">
+                <a href="index.html" class="desktop-brand">
+                    <span id="desktopBrandMark" class="desktop-brand__mark">ॐ</span>
+                    <span>
+                        <strong>MyBhagavanth</strong>
+                        <small>Seek guidance, find peace</small>
+                    </span>
+                </a>
+                <nav class="desktop-site-nav" aria-label="Primary navigation">
+                    <a href="index.html" class="desktop-site-nav__link">Home</a>
+                    <a href="index.html#chatSection" class="desktop-site-nav__link">Chat</a>
+                    <a href="history.html" class="desktop-site-nav__link">History</a>
+                    <a href="profile.html" class="desktop-site-nav__link is-active">Profile</a>
+                </nav>
+            </div>
+        </header>
+
+    <header class="mobile-app-header" aria-hidden="true">
+        <button id="mobileMenuButton" type="button" class="mobile-icon-button" aria-label="Open menu"><span></span><span></span><span></span></button>
+        <div class="mobile-app-brand">
+            <p class="mobile-app-label">Divine App</p>
+            <h2>MyBhagavanth</h2>
+        </div>
+        <div id="mobileHeaderAvatar" class="mobile-header-avatar" aria-hidden="true">ॐ</div>
+    </header>
+
+    <div id="mobileDrawerBackdrop" class="mobile-drawer-backdrop" aria-hidden="true"></div>
+    <aside id="mobileDrawer" class="mobile-drawer" aria-hidden="true">
+        <div class="mobile-drawer-head">
+            <div>
+                <p class="mobile-drawer-label">Sacred Menu</p>
+                <h3 id="mobileDrawerName">Seeker</h3>
+                <p id="mobileDrawerMeta" class="mobile-drawer-meta"></p>
+            </div>
+            <button id="mobileDrawerClose" type="button" class="mobile-icon-button mobile-close-button" aria-label="Close menu">×</button>
+        </div>
+
+        <nav class="mobile-drawer-nav">
+            <button type="button" class="mobile-drawer-link" data-app-route="home">Home</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="chat">Ask Bhagavanth</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="history">History</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="profile">Profile</button>
+        </nav>
+
+        <div class="mobile-settings-card">
+            <label class="mobile-settings-label" for="mobileLanguageSelect">Language Selection</label>
+            <select id="mobileLanguageSelect" class="mobile-settings-select">
+                <option value="Kannada">Kannada</option>
+                <option value="English">English</option>
+            </select>
+        </div>
+
+        <div class="mobile-settings-card">
+            <label class="mobile-settings-switch" for="typingAnimationToggle">
+                <span>
+                    <strong>Settings</strong>
+                    <small>Typing animation in responses</small>
+                </span>
+                <input id="typingAnimationToggle" type="checkbox" checked>
+            </label>
+        </div>
+
+        <div class="mobile-drawer-actions">
+            <button id="mobileInstallButton" type="button" class="secondary-button pwa-install-button" hidden>Install App</button>
+            <button id="mobileLogoutButton" type="button" class="secondary-button">Logout</button>
+        </div>
+    </aside>
+
+    <main class="page-shell">
+        <section class="user-bar">
+            <div class="user-bar-copy">
+                <p class="user-bar-label">Sacred Profile</p>
+                <h2 id="userGreeting">Welcome</h2>
+                <p id="userMeta" class="user-meta"></p>
+            </div>
+            <div class="theme-chip" id="themeChip">Sacred Mode</div>
+            <div class="desktop-nav-links">
+                <a href="index.html" class="secondary-button nav-link-button">Home</a>
+                <a href="history.html" class="secondary-button nav-link-button">History Page</a>
+            </div>
+            <button id="installAppButton" type="button" class="secondary-button pwa-install-button" hidden>Install App</button>
+            <button id="logoutButton" type="button" class="secondary-button">Logout</button>
+        </section>
+
+        <section class="subpage-hero">
+            <p id="profileKicker" class="subpage-kicker">Sacred Profile</p>
+            <h1 class="subpage-title">Profile Page</h1>
+            <p class="subpage-copy">View and update the details that shape your spiritual guidance experience across MyBhagavanth.</p>
+            <p id="profileMeta" class="subpage-meta"></p>
+        </section>
+
+        <section class="subpage-card">
+            <div class="profile-layout">
+                <aside class="profile-side-card">
+                    <div id="profileAvatar" class="religion-avatar-large" aria-hidden="true">ॐ</div>
+                    <div>
+                        <h3 id="profileNameHeading">Seeker</h3>
+                        <p id="profileSummaryText" class="profile-summary-text"></p>
+                    </div>
+                    <div class="profile-read-grid">
+                        <article class="profile-read-item"><span>Religion</span><strong id="profileReligionText">Hindu</strong></article>
+                        <article class="profile-read-item"><span>Language</span><strong id="profileLanguageText">English</strong></article>
+                        <article class="profile-read-item"><span>Gender</span><strong id="profileGenderText">-</strong></article>
+                    </div>
+                    <p class="profile-side-note">Your preferences remain stored locally so Bhagavanth can continue speaking in the tone and language that suits you.</p>
+                </aside>
+
+                <section class="profile-main-card">
+                    <h3>Edit Profile</h3>
+                    <p class="profile-summary-text">Update your spiritual profile below and save it instantly.</p>
+                    <form id="profileForm" class="profile-form" novalidate>
+                        <div class="profile-form-grid">
+                            <div class="profile-field">
+                                <label for="profileFullName">Full Name</label>
+                                <input id="profileFullName" type="text" maxlength="80" required>
+                                <p class="field-inline-error" data-error-for="fullName"></p>
+                            </div>
+                            <div class="profile-field">
+                                <label for="profileGender">Gender</label>
+                                <select id="profileGender" required>
+                                    <option value="">Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <p class="field-inline-error" data-error-for="gender"></p>
+                            </div>
+                            <div class="profile-field">
+                                <label for="profileReligion">Religion</label>
+                                <select id="profileReligion" required>
+                                    <option value="">Select religion</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Muslim">Muslim</option>
+                                    <option value="Christian">Christian</option>
+                                </select>
+                                <p class="field-inline-error" data-error-for="religion"></p>
+                            </div>
+                            <div class="profile-field">
+                                <label for="profileLanguage">Language Preference</label>
+                                <select id="profileLanguage" required>
+                                    <option value="">Select language</option>
+                                    <option value="Kannada">Kannada</option>
+                                    <option value="English">English</option>
+                                </select>
+                                <p class="field-inline-error" data-error-for="languagePreference"></p>
+                            </div>
+                        </div>
+                        <p id="profileStatus" class="page-status" aria-live="polite"></p>
+                        <div class="section-actions">
+                            <button type="submit" id="saveProfileButton" class="secondary-button">Save Profile</button>
+                            <a href="index.html" class="secondary-button nav-link-button">Back To Home</a>
+                            <a href="history.html" class="secondary-button nav-link-button">Open History</a>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </section>
+    </main>
+
+        <footer class="desktop-site-footer">
+            <div class="desktop-site-footer__inner">
+                <p>Seek guidance, find peace.</p>
+                <nav class="desktop-site-footer__nav" aria-label="Footer navigation">
+                    <a href="index.html">Home</a>
+                    <a href="history.html">History</a>
+                    <a href="profile.html">Profile</a>
+                </nav>
+            </div>
+        </footer>
+
+    <nav class="mobile-bottom-nav" aria-hidden="true">
+        <button type="button" class="mobile-nav-item" data-app-route="home"><span class="mobile-nav-icon">⌂</span><span class="mobile-nav-label">Home</span></button>
+        <button type="button" class="mobile-nav-item" data-app-route="chat"><span class="mobile-nav-icon">✦</span><span class="mobile-nav-label">Chat</span></button>
+        <button type="button" class="mobile-nav-item" data-app-route="history"><span class="mobile-nav-icon">☰</span><span class="mobile-nav-label">History</span></button>
+        <button type="button" class="mobile-nav-item is-active" data-app-route="profile"><span class="mobile-nav-icon">◉</span><span class="mobile-nav-label">Profile</span></button>
+    </nav>
+
+    <script src="pwa.js"></script>
+    <script src="app-common.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

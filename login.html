@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to MyBhagavanth</title>
+    <meta name="description" content="Enter the divine space of MyBhagavanth and receive spiritual AI guidance shaped by your preferences.">
+    <meta name="theme-color" content="#0a1020">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icon-192.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon-192.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-background" aria-hidden="true">
+        <div class="halo halo-gold"></div>
+        <div class="halo halo-indigo"></div>
+        <div class="constellation"></div>
+        <div class="sacred-symbol symbol-primary"></div>
+        <div class="sacred-symbol symbol-secondary"></div>
+    </div>
+
+    <main class="auth-shell">
+        <section class="auth-copy">
+            <p id="authKicker" class="auth-kicker">Spiritual Welcome</p>
+            <h1>Welcome to MyBhagavanth</h1>
+            <p id="authSubtitle" class="auth-subtitle">Speak your heart, receive divine guidance</p>
+            <blockquote id="authQuote" class="auth-quote">
+                “When meditation is mastered, the mind is unwavering like the flame of a lamp in a windless place.”
+            </blockquote>
+            <p id="authVerse" class="auth-verse">Bhagavad Gita 6.19</p>
+        </section>
+
+        <section class="auth-card">
+            <div id="authIcon" class="auth-icon" aria-hidden="true">☸</div>
+            <div class="auth-card-header">
+                <h2 id="authHeading">Enter Divine Space</h2>
+                <p id="authCardCopy">Tell Bhagavanth who you are, so the guidance can feel more personal and peaceful.</p>
+            </div>
+
+            <form id="authForm" class="auth-form" novalidate>
+                <div class="field-group">
+                    <label for="fullName">Full Name</label>
+                    <input id="fullName" name="fullName" type="text" placeholder="Your full name" maxlength="80" required>
+                    <p class="field-error" data-error-for="fullName"></p>
+                </div>
+
+                <div class="field-grid">
+                    <div class="field-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <p class="field-error" data-error-for="gender"></p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="religion">Religion</label>
+                        <select id="religion" name="religion" required>
+                            <option value="">Select religion</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Muslim">Muslim</option>
+                            <option value="Christian">Christian</option>
+                        </select>
+                        <p class="field-error" data-error-for="religion"></p>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="languagePreference">Language Preference</label>
+                    <select id="languagePreference" name="languagePreference" required>
+                        <option value="">Select language</option>
+                        <option value="Kannada">Kannada</option>
+                        <option value="English">English</option>
+                    </select>
+                    <p class="field-error" data-error-for="languagePreference"></p>
+                </div>
+
+                <div class="theme-preview" id="themePreview">
+                    <p class="theme-preview-label">Theme Preview</p>
+                    <p id="themePreviewText" class="theme-preview-text">Choose a religion to preview the personalized guidance style and visual atmosphere.</p>
+                </div>
+
+                <div id="authStatus" class="auth-status" aria-live="polite"></div>
+
+                <button id="submitButton" type="submit" class="auth-button">Enter Divine Space</button>
+                <button id="authInstallButton" type="button" class="auth-secondary-button" hidden>Install App</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="pwa.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

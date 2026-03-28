@@ -1,0 +1,39 @@
+{
+    "name": "MyBhagavanth",
+    "short_name": "Bhagavanth",
+    "description": "A spiritual AI companion for reflective guidance across personalized traditions.",
+    "start_url": "./index.html",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#05070d",
+    "theme_color": "#0a1020",
+    "shortcuts": [
+        {
+            "name": "Ask Bhagavanth",
+            "url": "./index.html#chatSection"
+        },
+        {
+            "name": "History",
+            "url": "./history.html"
+        },
+        {
+            "name": "Profile",
+            "url": "./profile.html"
+        }
+    ],
+    "icons": [
+        {
+            "src": "./icon-192.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "./icon-512.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ]
+}

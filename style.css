@@ -1,0 +1,1251 @@
+:root {
+    --bg: #05070d;
+    --bg-soft: rgba(11, 15, 26, 0.82);
+    --panel: rgba(9, 14, 24, 0.78);
+    --panel-border: rgba(244, 198, 92, 0.2);
+    --text: #f7edd2;
+    --muted: #c6b88a;
+    --gold: #e4b85f;
+    --gold-strong: #f6d481;
+    --gold-shadow: rgba(228, 184, 95, 0.28);
+    --danger: #ff8e7d;
+    --success: #9cd6a2;
+    --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --radius-sm: 12px;
+    --content-width: 1200px;
+    --space-2: 12px;
+    --space-3: 18px;
+    --space-4: 24px;
+    --space-5: 32px;
+    --space-6: 48px;
+    --space-7: 64px;
+    --surface-strong: linear-gradient(180deg, rgba(14, 20, 34, 0.86), rgba(8, 11, 20, 0.94));
+    --response-surface: linear-gradient(180deg, rgba(17, 24, 41, 0.88), rgba(8, 11, 18, 0.92));
+    --symbol: "ॐ";
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top, rgba(121, 83, 24, 0.14), transparent 28%),
+        linear-gradient(180deg, #0a1020 0%, #05070d 54%, #03050a 100%);
+    overflow-x: hidden;
+    transition: background 280ms ease, color 280ms ease;
+}
+
+body[data-religion="muslim"] {
+    --panel-border: rgba(123, 212, 157, 0.2);
+    --text: #edf7ef;
+    --muted: #adcab6;
+    --gold: #7cd39b;
+    --gold-strong: #c8f2d5;
+    --gold-shadow: rgba(124, 211, 155, 0.28);
+    --success: #b5e7c1;
+    --surface-strong: linear-gradient(180deg, rgba(8, 28, 21, 0.88), rgba(5, 16, 12, 0.95));
+    --response-surface: linear-gradient(180deg, rgba(10, 35, 27, 0.9), rgba(6, 16, 12, 0.95));
+    --symbol: "☪";
+    background:
+        radial-gradient(circle at top, rgba(124, 211, 155, 0.12), transparent 28%),
+        linear-gradient(180deg, #081712 0%, #04100c 54%, #020806 100%);
+}
+
+body[data-religion="christian"] {
+    --panel-border: rgba(173, 194, 231, 0.4);
+    --text: #203148;
+    --muted: #687a8e;
+    --gold: #88a7da;
+    --gold-strong: #d9e6ff;
+    --gold-shadow: rgba(136, 167, 218, 0.22);
+    --success: #6f8db7;
+    --danger: #c97171;
+    --surface-strong: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(240, 245, 252, 0.94));
+    --response-surface: linear-gradient(180deg, rgba(249, 251, 255, 0.95), rgba(237, 243, 252, 0.96));
+    --symbol: "✝";
+    background:
+        radial-gradient(circle at top, rgba(208, 223, 255, 0.7), transparent 34%),
+        linear-gradient(180deg, #f7faff 0%, #eef3fb 54%, #e7edf7 100%);
+}
+
+button,
+textarea {
+    font: inherit;
+}
+
+.cosmic-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(12px);
+    opacity: 0.35;
+}
+
+.orb-one {
+    top: 8%;
+    right: -8%;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(251, 217, 127, 0.55), rgba(251, 217, 127, 0.04));
+}
+
+.orb-two {
+    bottom: -10%;
+    left: -10%;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(95, 134, 255, 0.26), rgba(95, 134, 255, 0.03));
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 10% 18%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 63% 74%, rgba(255, 255, 255, 0.6) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 30% 62%, rgba(255, 255, 255, 0.45) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 86% 80%, rgba(255, 255, 255, 0.3) 0 1px, transparent 1.5px);
+    opacity: 0.8;
+    transition: opacity 280ms ease;
+}
+
+.cosmic-bg::before,
+.cosmic-bg::after {
+    position: absolute;
+    font-family: "Playfair Display", serif;
+    color: rgba(255, 255, 255, 0.06);
+    content: var(--symbol);
+    line-height: 1;
+}
+
+.cosmic-bg::before {
+    top: 10%;
+    left: 7%;
+    font-size: clamp(3.4rem, 7vw, 6rem);
+}
+
+.cosmic-bg::after {
+    right: 8%;
+    bottom: 16%;
+    font-size: clamp(3rem, 6vw, 5rem);
+}
+
+.page-shell {
+    position: relative;
+    z-index: 1;
+    width: min(calc(100% - 32px), var(--content-width));
+    margin: 0 auto;
+    padding: 128px 0 96px;
+}
+
+.desktop-site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 18;
+    background: linear-gradient(180deg, rgba(5, 8, 15, 0.78), rgba(5, 8, 15, 0.46));
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: background 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+}
+
+.desktop-site-header.is-scrolled {
+    background: rgba(7, 10, 18, 0.9);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.22);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+body[data-religion="christian"] .desktop-site-header {
+    background: linear-gradient(180deg, rgba(247, 250, 255, 0.86), rgba(247, 250, 255, 0.64));
+}
+
+body[data-religion="christian"] .desktop-site-header.is-scrolled {
+    background: rgba(243, 247, 255, 0.94);
+}
+
+.desktop-site-header__inner,
+.desktop-site-footer__inner {
+    width: min(calc(100% - 32px), var(--content-width));
+    margin: 0 auto;
+}
+
+.desktop-site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 82px;
+}
+
+.desktop-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.desktop-brand__mark {
+    width: 46px;
+    height: 46px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    color: #231402;
+    background: radial-gradient(circle at 30% 30%, #ffe9ae, #deae49 65%, #885d16);
+    box-shadow: 0 12px 28px rgba(228, 184, 95, 0.22);
+}
+
+body[data-religion="muslim"] .desktop-brand__mark {
+    color: #07321f;
+    background: radial-gradient(circle at 30% 30%, #edfff3, #8fdcaf 65%, #2e7a56);
+    box-shadow: 0 12px 28px rgba(124, 211, 155, 0.22);
+}
+
+body[data-religion="christian"] .desktop-brand__mark {
+    color: #35517b;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #e1ecff 65%, #89a6d8);
+    box-shadow: 0 12px 28px rgba(136, 167, 218, 0.2);
+}
+
+.desktop-brand strong,
+.desktop-site-nav__link,
+.desktop-site-footer__nav a {
+    font-weight: 600;
+}
+
+.desktop-brand strong {
+    display: block;
+    font-family: "Playfair Display", serif;
+    font-size: 1.2rem;
+}
+
+.desktop-brand small {
+    display: block;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.desktop-site-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.desktop-site-nav__link {
+    padding: 10px 16px;
+    border-radius: 999px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.desktop-site-nav__link:hover,
+.desktop-site-nav__link.is-active {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.desktop-site-nav__link:hover {
+    transform: translateY(-1px);
+}
+
+.mobile-app-header,
+.mobile-drawer,
+.mobile-drawer-backdrop,
+.mobile-bottom-nav,
+.mobile-profile-card {
+    display: none;
+}
+
+.mobile-icon-button {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-icon-button span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+}
+
+.mobile-icon-button span + span {
+    margin-top: 4px;
+}
+
+.mobile-profile-card {
+    margin-top: 28px;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    background: var(--surface-strong);
+    border: 1px solid var(--panel-border);
+    box-shadow: var(--shadow);
+}
+
+.mobile-profile-header,
+.mobile-profile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.mobile-profile-header h2 {
+    margin: 4px 0 0;
+    font-family: "Playfair Display", serif;
+}
+
+.mobile-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+}
+
+.mobile-profile-item {
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mobile-profile-item span,
+.mobile-drawer-label,
+.mobile-settings-label,
+.mobile-nav-label,
+.mobile-app-label {
+    display: block;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.mobile-profile-item strong {
+    display: block;
+    margin-top: 8px;
+    color: var(--gold-strong);
+}
+
+.pwa-install-button[hidden] {
+    display: none !important;
+}
+
+.mobile-close-button {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.user-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+    padding: 24px 26px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(13, 19, 32, 0.92), rgba(8, 11, 19, 0.94));
+    border: 1px solid rgba(244, 198, 92, 0.16);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.26);
+    animation: rise-in 0.75s ease-out both;
+    transition: background 280ms ease, border-color 280ms ease, transform 220ms ease;
+}
+
+.user-bar-copy {
+    min-width: 0;
+}
+
+.user-bar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.theme-chip {
+    min-width: 154px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--gold-strong);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.desktop-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.nav-link-button {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-bar-copy h2 {
+    margin: 4px 0 8px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    line-height: 1.1;
+}
+
+.user-bar-label {
+    margin: 0;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+}
+
+.user-meta {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.hero {
+    text-align: center;
+    padding: 0 0 var(--space-6);
+    animation: rise-in 0.9s ease-out both;
+}
+
+.hero-content {
+    width: min(100%, 760px);
+    margin: 0 auto;
+}
+
+.hero-kicker {
+    margin: 0 0 12px;
+    color: var(--gold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+}
+
+.hero h1,
+.history-header h2 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.hero h1 {
+    font-size: clamp(3.2rem, 6vw, 5.4rem);
+    line-height: 0.92;
+    text-shadow: 0 0 36px rgba(228, 184, 95, 0.15);
+}
+
+.hero-quote {
+    width: min(100%, 680px);
+    margin: 24px auto 14px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.08rem, 1.8vw, 1.38rem);
+    line-height: 1.85;
+    color: #f3e8c1;
+}
+
+.hero-verse {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.96rem;
+}
+
+.app-card,
+.history-section {
+    background: var(--surface-strong);
+    border: 1px solid var(--panel-border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    transition: background 280ms ease, border-color 280ms ease;
+}
+
+.app-card {
+    border-radius: 18px;
+    padding: 28px;
+    animation: rise-in 1s ease-out 0.12s both;
+}
+
+.desktop-main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(350px, 0.75fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.desktop-main-grid--single {
+    grid-template-columns: minmax(0, 860px);
+    justify-content: center;
+    width: min(100%, 920px);
+    margin: 0 auto;
+}
+
+.input-panel {
+    display: grid;
+    gap: 16px;
+}
+
+.input-label,
+.response-title,
+.history-label {
+    color: var(--gold-strong);
+}
+
+.input-label {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+textarea {
+    width: 100%;
+    min-height: 150px;
+    resize: vertical;
+    border-radius: 16px;
+    border: 1px solid rgba(228, 184, 95, 0.28);
+    background: rgba(5, 8, 14, 0.82);
+    color: var(--text);
+    padding: 18px 18px;
+    outline: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+body[data-religion="christian"] textarea {
+    background: rgba(248, 250, 255, 0.92);
+}
+
+textarea:focus {
+    border-color: rgba(246, 212, 129, 0.9);
+    box-shadow: 0 0 0 4px rgba(228, 184, 95, 0.12);
+    transform: translateY(-1px);
+}
+
+textarea::placeholder {
+    color: rgba(247, 237, 210, 0.42);
+}
+
+.input-actions,
+.history-header,
+.response-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.support-text,
+.response-subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.support-text {
+    max-width: 560px;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+    transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+}
+
+#askButton,
+.secondary-button {
+    border-radius: 999px;
+    padding: 13px 22px;
+    font-weight: 700;
+}
+
+#askButton {
+    background: linear-gradient(135deg, #a36b18, #f2c766 52%, #b4802a 100%);
+    color: #160d02;
+    box-shadow: 0 16px 30px rgba(228, 184, 95, 0.24);
+}
+
+#askButton:hover,
+.secondary-button:hover {
+    transform: translateY(-2px);
+}
+
+#askButton:disabled {
+    opacity: 0.7;
+    cursor: progress;
+}
+
+.secondary-button {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    border: 1px solid rgba(228, 184, 95, 0.18);
+}
+
+body[data-religion="muslim"] #askButton {
+    background: linear-gradient(135deg, #2d7a55, #a2e7b8 52%, #57a773 100%);
+    color: #042714;
+    box-shadow: 0 16px 30px rgba(124, 211, 155, 0.24);
+}
+
+body[data-religion="christian"] #askButton {
+    background: linear-gradient(135deg, #9eb9e5, #ffffff 52%, #bfd1f0 100%);
+    color: #2e4b76;
+    box-shadow: 0 16px 30px rgba(136, 167, 218, 0.2);
+}
+
+body[data-religion="christian"] .secondary-button,
+body[data-religion="christian"] .theme-chip {
+    background: rgba(122, 147, 191, 0.08);
+}
+
+.status-panel {
+    min-height: 28px;
+    padding-top: 14px;
+    color: var(--muted);
+}
+
+.loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.loading-dots {
+    display: inline-flex;
+    gap: 6px;
+}
+
+.loading-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold-strong);
+    animation: pulse 1.2s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.response-section {
+    padding-top: 8px;
+}
+
+.response-card {
+    padding: 24px;
+    border-radius: 16px;
+    background: var(--response-surface);
+    border: 1px solid rgba(246, 212, 129, 0.38);
+    box-shadow:
+        0 0 0 1px rgba(246, 212, 129, 0.08),
+        0 0 40px rgba(228, 184, 95, 0.12),
+        inset 0 0 30px rgba(246, 212, 129, 0.03);
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 260ms ease, transform 260ms ease;
+}
+
+body[data-religion="muslim"] .response-card {
+    border-color: rgba(155, 231, 187, 0.4);
+    box-shadow:
+        0 0 0 1px rgba(155, 231, 187, 0.08),
+        0 0 40px rgba(124, 211, 155, 0.12),
+        inset 0 0 30px rgba(155, 231, 187, 0.04);
+}
+
+body[data-religion="christian"] .response-card {
+    border-color: rgba(187, 203, 235, 0.56);
+    box-shadow:
+        0 0 0 1px rgba(187, 203, 235, 0.12),
+        0 0 36px rgba(136, 167, 218, 0.14),
+        inset 0 0 30px rgba(136, 167, 218, 0.04);
+}
+
+.response-card.hidden {
+    display: none;
+}
+
+.response-card.reveal {
+    animation: card-fade 0.5s ease forwards;
+}
+
+.avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    color: #251502;
+    background: radial-gradient(circle at 30% 30%, #ffe9ae, #deae49 65%, #885d16);
+    box-shadow: 0 0 24px rgba(228, 184, 95, 0.28);
+    transition: background 280ms ease, box-shadow 280ms ease, color 280ms ease;
+}
+
+body[data-religion="muslim"] .avatar {
+    color: #043122;
+    background: radial-gradient(circle at 30% 30%, #ecfff3, #8dddad 65%, #2c7a53);
+    box-shadow: 0 0 24px rgba(124, 211, 155, 0.28);
+}
+
+body[data-religion="christian"] .avatar {
+    color: #35517b;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #dde9ff 65%, #87a4d6);
+    box-shadow: 0 0 24px rgba(136, 167, 218, 0.28);
+}
+
+.response-title {
+    margin: 0 0 4px;
+    font-weight: 700;
+}
+
+.response-content {
+    padding-top: 18px;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #f6eed4;
+    white-space: pre-wrap;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    animation: blink 1s step-end infinite;
+}
+
+.history-section {
+    margin-top: 28px;
+    border-radius: 18px;
+    padding: 24px;
+    animation: rise-in 1s ease-out 0.2s both;
+}
+
+.desktop-site-footer {
+    position: relative;
+    z-index: 1;
+    padding: 0 0 48px;
+}
+
+.desktop-site-footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--muted);
+}
+
+.desktop-site-footer__inner p {
+    margin: 0;
+}
+
+.desktop-site-footer__nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.desktop-site-footer__nav a {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.desktop-site-footer__nav a:hover {
+    color: var(--text);
+}
+
+.history-header {
+    margin-bottom: 18px;
+}
+
+.history-list {
+    display: grid;
+    gap: 16px;
+}
+
+.history-empty {
+    margin: 0;
+    color: var(--muted);
+    text-align: center;
+    padding: 24px 0 8px;
+}
+
+.history-item {
+    padding: 18px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 280ms ease, border-color 280ms ease;
+}
+
+body[data-religion="christian"] .history-item {
+    background: rgba(129, 155, 197, 0.08);
+    border-color: rgba(129, 155, 197, 0.14);
+}
+
+.history-item p {
+    margin: 0;
+}
+
+.history-question,
+.history-answer {
+    margin-top: 8px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.history-answer-label {
+    margin-top: 16px;
+}
+
+.status-error {
+    color: var(--danger);
+}
+
+.status-success {
+    color: var(--success);
+}
+
+@keyframes pulse {
+    0%, 80%, 100% {
+        transform: scale(0.7);
+        opacity: 0.45;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes card-fade {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 720px) {
+    .page-shell {
+        width: min(calc(100% - 20px), var(--content-width));
+        padding-top: 118px;
+        padding-bottom: 44px;
+    }
+
+    .app-card,
+    .history-section {
+        padding: 18px;
+        border-radius: 22px;
+    }
+
+    .input-actions,
+    .history-header,
+    .response-header,
+    .user-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #askButton,
+    .secondary-button {
+        width: 100%;
+    }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-app-header,
+    .mobile-drawer,
+    .mobile-drawer-backdrop,
+    .mobile-profile-card {
+        display: none !important;
+    }
+
+    .page-shell {
+        width: min(calc(100% - 24px), var(--content-width));
+        max-width: none;
+        padding: 80px 0 104px;
+    }
+
+    .desktop-site-header {
+        display: block;
+    }
+
+    .desktop-site-header__inner {
+        min-height: auto;
+        padding: 14px 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .desktop-brand {
+        justify-content: flex-start;
+    }
+
+    .desktop-site-nav {
+        display: none;
+    }
+
+    .desktop-site-footer {
+        display: block;
+        padding: 0 0 28px;
+    }
+
+    .desktop-site-footer__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-top: 22px;
+    }
+
+    .desktop-site-footer__nav {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .desktop-main-grid {
+        display: block;
+    }
+
+    .hero,
+    .app-card,
+    .history-section,
+    .user-bar {
+        margin: 0 0 16px;
+        border-radius: 24px;
+    }
+
+    .hero {
+        min-height: auto;
+        display: block;
+        padding: 8px 4px 20px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 11vw, 3.9rem);
+    }
+
+    .hero-quote {
+        width: 100%;
+        font-size: 1.02rem;
+    }
+
+    .app-card,
+    .history-section,
+    .user-bar {
+        padding: 20px 16px;
+    }
+
+    .user-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .input-actions,
+    .history-header,
+    .response-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #askButton,
+    .secondary-button,
+    .desktop-nav-links .nav-link-button {
+        width: 100%;
+        min-height: 52px;
+    }
+
+    .desktop-nav-links {
+        display: grid;
+        gap: 10px;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .mobile-bottom-nav {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 22;
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+        padding: 8px;
+        border-radius: 22px;
+        background: rgba(6, 10, 18, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+        backdrop-filter: blur(18px);
+    }
+
+    body[data-religion="christian"] .mobile-bottom-nav {
+        background: rgba(244, 248, 255, 0.95);
+    }
+
+    .mobile-nav-item {
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        min-height: 56px;
+        padding: 6px 4px;
+        border-radius: 16px;
+        color: var(--muted);
+        background: transparent;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-nav-item.is-active {
+        color: var(--gold-strong);
+        background: rgba(255, 255, 255, 0.07);
+    }
+
+    .mobile-nav-icon {
+        font-size: 1.1rem;
+        line-height: 1;
+    }
+
+    .mobile-nav-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        line-height: 1;
+    }
+
+    textarea {
+        min-height: 170px;
+        border-radius: 22px;
+    }
+
+    .response-card {
+        border-radius: 22px;
+    }
+
+    .response-content {
+        font-size: 0.98rem;
+        line-height: 1.8;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-profile-card {
+        display: none;
+    }
+
+    .page-shell > section,
+    .page-shell > div {
+        margin-bottom: var(--space-5);
+    }
+
+    .app-card {
+        min-height: 700px;
+        display: grid;
+        grid-template-rows: minmax(260px, 1fr) auto auto;
+        gap: 14px;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .desktop-main-grid--single .app-card {
+        width: 100%;
+        max-width: 920px;
+        margin: 0 auto;
+    }
+
+    .response-section {
+        grid-row: 1;
+        padding: 26px 26px 0;
+        overflow-y: auto;
+        min-height: 0;
+    }
+
+    .status-panel {
+        grid-row: 2;
+        padding: 0 26px;
+    }
+
+    .input-panel {
+        grid-row: 3;
+        gap: 14px;
+        padding: 22px 26px 26px;
+        background: linear-gradient(180deg, rgba(10, 15, 26, 0.88), rgba(8, 11, 20, 0.96));
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .desktop-main-grid--single .input-panel {
+        gap: 16px;
+    }
+
+    .desktop-main-grid--single textarea {
+        min-height: 170px;
+        max-height: 280px;
+    }
+
+    .desktop-main-grid--single .input-actions {
+        align-items: flex-end;
+        gap: 16px;
+    }
+
+    .desktop-main-grid--single .support-text {
+        flex: 1 1 420px;
+    }
+
+    .desktop-main-grid--single #askButton {
+        flex: 0 0 auto;
+        min-width: 210px;
+        padding-inline: 28px;
+        white-space: nowrap;
+    }
+
+    .desktop-main-grid--single .response-header {
+        align-items: flex-start;
+    }
+
+    .desktop-main-grid--single .response-card {
+        padding: 26px;
+        border-radius: 18px;
+    }
+
+    .desktop-main-grid--single .response-content {
+        padding-top: 20px;
+        line-height: 1.85;
+    }
+
+    body[data-religion="christian"] .input-panel {
+        background: linear-gradient(180deg, rgba(238, 244, 253, 0.92), rgba(234, 241, 251, 0.96));
+    }
+
+    .history-section {
+        margin-top: 0;
+        min-height: 760px;
+        position: sticky;
+        top: 108px;
+    }
+
+    .history-list {
+        max-height: 660px;
+        overflow-y: auto;
+        padding-right: 6px;
+    }
+
+    .history-item:hover,
+    .response-card:hover,
+    .user-bar:hover {
+        transform: translateY(-2px);
+        transition: transform 220ms ease;
+    }
+
+    .history-item {
+        padding: 18px 18px;
+        border-radius: 16px;
+    }
+
+    .history-item + .history-item {
+        margin-top: 2px;
+    }
+
+    .history-header {
+        margin-bottom: 20px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .secondary-button,
+    .nav-link-button,
+    #askButton {
+        min-height: 46px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1080px) {
+    .desktop-main-grid--single {
+        width: min(100%, 100%);
+    }
+
+    .desktop-main-grid--single .app-card {
+        max-width: 100%;
+    }
+
+    .desktop-main-grid--single .input-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .desktop-main-grid--single #askButton {
+        width: 100%;
+        min-width: 0;
+    }
+}

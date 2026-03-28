@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBhagavanth | History</title>
+    <meta name="description" content="Browse your previous questions and spiritual AI responses on MyBhagavanth.">
+    <meta name="theme-color" content="#0a1020">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icon-192.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon-192.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="subpages.css">
+</head>
+<body>
+    <div class="cosmic-bg" aria-hidden="true">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="stars"></div>
+    </div>
+
+        <header id="desktopSiteHeader" class="desktop-site-header">
+            <div class="desktop-site-header__inner">
+                <a href="index.html" class="desktop-brand">
+                    <span id="desktopBrandMark" class="desktop-brand__mark">ॐ</span>
+                    <span>
+                        <strong>MyBhagavanth</strong>
+                        <small>Seek guidance, find peace</small>
+                    </span>
+                </a>
+                <nav class="desktop-site-nav" aria-label="Primary navigation">
+                    <a href="index.html" class="desktop-site-nav__link">Home</a>
+                    <a href="index.html#chatSection" class="desktop-site-nav__link">Chat</a>
+                    <a href="history.html" class="desktop-site-nav__link is-active">History</a>
+                    <a href="profile.html" class="desktop-site-nav__link">Profile</a>
+                </nav>
+            </div>
+        </header>
+
+    <header class="mobile-app-header" aria-hidden="true">
+        <button id="mobileMenuButton" type="button" class="mobile-icon-button" aria-label="Open menu"><span></span><span></span><span></span></button>
+        <div class="mobile-app-brand">
+            <p class="mobile-app-label">Divine App</p>
+            <h2>MyBhagavanth</h2>
+        </div>
+        <div id="mobileHeaderAvatar" class="mobile-header-avatar" aria-hidden="true">ॐ</div>
+    </header>
+
+    <div id="mobileDrawerBackdrop" class="mobile-drawer-backdrop" aria-hidden="true"></div>
+    <aside id="mobileDrawer" class="mobile-drawer" aria-hidden="true">
+        <div class="mobile-drawer-head">
+            <div>
+                <p class="mobile-drawer-label">Sacred Menu</p>
+                <h3 id="mobileDrawerName">Seeker</h3>
+                <p id="mobileDrawerMeta" class="mobile-drawer-meta"></p>
+            </div>
+            <button id="mobileDrawerClose" type="button" class="mobile-icon-button mobile-close-button" aria-label="Close menu">×</button>
+        </div>
+
+        <nav class="mobile-drawer-nav">
+            <button type="button" class="mobile-drawer-link" data-app-route="home">Home</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="chat">Ask Bhagavanth</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="history">History</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="profile">Profile</button>
+        </nav>
+
+        <div class="mobile-settings-card">
+            <label class="mobile-settings-label" for="mobileLanguageSelect">Language Selection</label>
+            <select id="mobileLanguageSelect" class="mobile-settings-select">
+                <option value="Kannada">Kannada</option>
+                <option value="English">English</option>
+            </select>
+        </div>
+
+        <div class="mobile-settings-card">
+            <label class="mobile-settings-switch" for="typingAnimationToggle">
+                <span>
+                    <strong>Settings</strong>
+                    <small>Typing animation in responses</small>
+                </span>
+                <input id="typingAnimationToggle" type="checkbox" checked>
+            </label>
+        </div>
+
+        <div class="mobile-drawer-actions">
+            <button id="mobileInstallButton" type="button" class="secondary-button pwa-install-button" hidden>Install App</button>
+            <button id="mobileLogoutButton" type="button" class="secondary-button">Logout</button>
+        </div>
+    </aside>
+
+    <main class="page-shell">
+        <section class="history-page-header">
+            <div class="history-page-header__top">
+                <div>
+                    <p id="historyKicker" class="subpage-kicker">Sacred Memory</p>
+                    <h1 class="history-page-title">Your Reflections</h1>
+                </div>
+                <div class="history-page-header__actions">
+                    <span class="history-count-badge" id="historyCountBadge">0 conversations</span>
+                    <button id="clearHistoryButton" type="button" class="secondary-button history-clear-btn">Clear All</button>
+                </div>
+            </div>
+            <p id="historyStatus" class="page-status" aria-live="polite"></p>
+        </section>
+
+        <div class="history-page-layout">
+            <section class="history-chat-panel">
+                <div id="historyThread" class="history-chat-thread"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Conversation detail modal -->
+    <div id="historyModal" class="hmodal-overlay" aria-hidden="true">
+        <div class="hmodal-box" role="dialog" aria-labelledby="hmodalTitle">
+            <header class="hmodal-header">
+                <h2 id="hmodalTitle" class="hmodal-title">Conversation Details</h2>
+                <span id="hmodalTime" class="hmodal-time"></span>
+                <button id="hmodalClose" type="button" class="hmodal-close" aria-label="Close">&times;</button>
+            </header>
+            <div id="hmodalBody" class="hmodal-body"></div>
+        </div>
+    </div>
+
+
+    <nav class="mobile-bottom-nav" aria-hidden="true">
+        <button type="button" class="mobile-nav-item" data-app-route="home"><span class="mobile-nav-icon">⌂</span><span class="mobile-nav-label">Home</span></button>
+        <button type="button" class="mobile-nav-item" data-app-route="chat"><span class="mobile-nav-icon">✦</span><span class="mobile-nav-label">Chat</span></button>
+        <button type="button" class="mobile-nav-item is-active" data-app-route="history"><span class="mobile-nav-icon">☰</span><span class="mobile-nav-label">History</span></button>
+        <button type="button" class="mobile-nav-item" data-app-route="profile"><span class="mobile-nav-icon">◉</span><span class="mobile-nav-label">Profile</span></button>
+    </nav>
+
+    <script src="pwa.js"></script>
+    <script src="app-common.js"></script>
+    <script src="history.js"></script>
+</body>
+</html>
