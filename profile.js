@@ -195,6 +195,9 @@ profileForm.addEventListener("submit", (event) => {
 
     saveProfileButton.disabled = true;
     app.saveProfile(nextProfile);
+    if (nextProfile.storageConsent) {
+        app.upsertProfileRecord(nextProfile, "profile-update");
+    }
     Object.assign(profile, nextProfile);
     renderProfile(profile);
     setStatus("Profile updated successfully.", "status-success");
@@ -209,6 +212,9 @@ mobileLanguageSelect.addEventListener("change", () => {
     languageInput.value = mobileLanguageSelect.value;
     const nextProfile = { ...profile, languagePreference: mobileLanguageSelect.value };
     app.saveProfile(nextProfile);
+    if (nextProfile.storageConsent) {
+        app.upsertProfileRecord(nextProfile, "language-update");
+    }
     Object.assign(profile, nextProfile);
     renderProfile(profile);
     setStatus(`Language preference updated to ${mobileLanguageSelect.value}.`, "status-success");

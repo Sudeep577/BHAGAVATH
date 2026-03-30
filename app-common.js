@@ -3,6 +3,9 @@
     const HISTORY_STORAGE_KEY = "mybhagavanth-history";
     const TYPING_PREF_KEY = "mybhagavanth-typing-animation";
     const PHOTO_STORAGE_KEY = "mybhagavanth-profile-photo";
+    const LOCAL_DB_NAME = "mybhagavanth-local-db";
+    const LOCAL_DB_VERSION = 1;
+    const PROFILE_STORE = "profiles";
 
     const DEFAULT_THEME = {
         bodyTheme: "default",
@@ -30,6 +33,98 @@
 
     function saveProfile(profile) {
         localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
+    }
+
+    function openLocalDatabase() {
+        return new Promise((resolve, reject) => {
+            if (!("indexedDB" in window)) {
+                reject(new Error("IndexedDB not supported"));
+                return;
+            }
+
+            const request = indexedDB.open(LOCAL_DB_NAME, LOCAL_DB_VERSION);
+
+            request.onupgradeneeded = (event) => {
+                const db = event.target.result;
+
+                if (!db.objectStoreNames.contains(PROFILE_STORE)) {
+                    const store = db.createObjectStore(PROFILE_STORE, { keyPath: "id" });
+                    store.createIndex("updatedAt", "updatedAt", { unique: false });
+                }
+            };
+
+            request.onsuccess = () => {
+                resolve(request.result);
+            };
+
+            request.onerror = () => {
+                reject(request.error || new Error("Failed to open IndexedDB"));
+            };
+        });
+    }
+
+    function upsertProfileRecord(profile, source = "app") {
+        if (!profile || typeof profile !== "object") {
+            return Promise.resolve(false);
+        }
+
+        const timeZone = (() => {
+            try {
+                return Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown";
+            } catch (error) {
+                return "unknown";
+            }
+        })();
+
+        const record = {
+            id: "primary",
+            profile: { ...profile },
+            metadata: {
+                source,
+                userAgent: navigator.userAgent || "unknown",
+                platform: navigator.platform || "unknown",
+                browserLanguage: navigator.language || "unknown",
+                screen: `${window.screen?.width || 0}x${window.screen?.height || 0}`,
+                timeZone
+            },
+            updatedAt: Date.now()
+        };
+
+        return openLocalDatabase()
+            .then((db) => new Promise((resolve) => {
+                const tx = db.transaction(PROFILE_STORE, "readwrite");
+                tx.objectStore(PROFILE_STORE).put(record);
+
+                tx.oncomplete = () => {
+                    db.close();
+                    resolve(true);
+                };
+
+                tx.onerror = () => {
+                    db.close();
+                    resolve(false);
+                };
+            }))
+            .catch(() => false);
+    }
+
+    function loadProfileRecord() {
+        return openLocalDatabase()
+            .then((db) => new Promise((resolve) => {
+                const tx = db.transaction(PROFILE_STORE, "readonly");
+                const request = tx.objectStore(PROFILE_STORE).get("primary");
+
+                request.onsuccess = () => {
+                    db.close();
+                    resolve(request.result || null);
+                };
+
+                request.onerror = () => {
+                    db.close();
+                    resolve(null);
+                };
+            }))
+            .catch(() => null);
     }
 
     function loadProfilePhoto() {
@@ -214,9 +309,13 @@
         HISTORY_STORAGE_KEY,
         TYPING_PREF_KEY,
         PHOTO_STORAGE_KEY,
+        LOCAL_DB_NAME,
+        PROFILE_STORE,
         DEFAULT_THEME,
         loadProfile,
         saveProfile,
+        loadProfileRecord,
+        upsertProfileRecord,
         loadProfilePhoto,
         saveProfilePhoto,
         removeProfilePhoto,

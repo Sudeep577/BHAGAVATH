@@ -78,6 +78,14 @@
                     <p id="themePreviewText" class="theme-preview-text">MyBhagavanth provides calm, thoughtful guidance to help you navigate life's challenges.</p>
                 </div>
 
+                <div class="consent-box">
+                    <label class="consent-label" for="storageConsent">
+                        <input id="storageConsent" name="storageConsent" type="checkbox" required>
+                        <span>I allow MyBhagavanth to store my profile details securely in this device internal storage.</span>
+                    </label>
+                    <p class="field-error" data-error-for="storageConsent"></p>
+                </div>
+
                 <div id="authStatus" class="auth-status" aria-live="polite"></div>
 
                 <button id="submitButton" type="submit" class="auth-button">Get Started</button>
@@ -87,6 +95,7 @@
     </main>
 
     <script src="pwa.js"></script>
+    <script src="app-common.js"></script>
     <script src="auth.js"></script>
 </body>
 </html>

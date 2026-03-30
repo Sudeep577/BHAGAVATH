@@ -321,14 +321,25 @@
     // ─── Share ───
     astroShareBtn.addEventListener("click", function () {
         if (!lastResult) return;
+        var sharerName = (profile.fullName || "A devotee").trim();
+        var prefersKannada = (profile.languagePreference || "").toLowerCase().indexOf("kannada") !== -1;
         var appUrl = new URL("login.html", window.location.href).href;
-        var shareText = "🔐 MyBhagavanth private astrology insight shared with you.\n"
-            + "Login ಮಾಡಿ app ಒಳಗೆ ಮಾತ್ರ view ಮಾಡಬಹುದು.\n\n"
-            + "Open app: " + appUrl;
+        var shareTitle = prefersKannada
+            ? "MyBhagavanth - " + sharerName + " ಅವರಿಂದ ಆಹ್ವಾನ"
+            : "MyBhagavanth - Invitation from " + sharerName;
+        var shareText = prefersKannada
+            ? "✨ " + sharerName + " ಅವರು MyBhagavanth ಗೆ ನಿಮ್ಮನ್ನು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ ✨\n"
+                + "MyBhagavanth ಒಂದು spiritual AI guidance app - astrology, daily learning, love insights ಮತ್ತು life support ಕೊಡುತ್ತದೆ.\n"
+                + "Share ಮಾಡಿದ reading details private ಆಗಿವೆ; login ಮಾಡಿದ ಮೇಲೆ ಮಾತ್ರ app ಒಳಗೆ view ಮಾಡಬಹುದು.\n\n"
+                + "MyBhagavanth ತೆರೆದುಕೊಳ್ಳಿ: " + appUrl
+            : "✨ " + sharerName + " invited you to MyBhagavanth ✨\n"
+                + "MyBhagavanth is a spiritual AI guidance app for astrology, daily learning, love insights, and life support.\n"
+                + "Shared reading details are private and can be viewed only after logging in to the app.\n\n"
+                + "Open MyBhagavanth: " + appUrl;
 
         if (navigator.share) {
             navigator.share({
-                title: "MyBhagavanth Private Insight",
+                title: shareTitle,
                 text: shareText,
                 url: appUrl
             }).catch(function () {});

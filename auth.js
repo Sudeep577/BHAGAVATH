@@ -29,7 +29,8 @@ const authInstallButton = document.getElementById("authInstallButton");
 const fields = {
     fullName: document.getElementById("fullName"),
     gender: document.getElementById("gender"),
-    languagePreference: document.getElementById("languagePreference")
+    languagePreference: document.getElementById("languagePreference"),
+    storageConsent: document.getElementById("storageConsent")
 };
 
 function loadProfile() {
@@ -91,7 +92,8 @@ function validateForm() {
     const profile = {
         fullName: fields.fullName.value.trim(),
         gender: fields.gender.value,
-        languagePreference: fields.languagePreference.value
+        languagePreference: fields.languagePreference.value,
+        storageConsent: Boolean(fields.storageConsent.checked)
     };
 
     let isValid = true;
@@ -111,6 +113,11 @@ function validateForm() {
         isValid = false;
     }
 
+    if (!profile.storageConsent) {
+        setFieldError("storageConsent", "Please allow local secure storage to continue.");
+        isValid = false;
+    }
+
     return isValid ? profile : null;
 }
 
@@ -123,6 +130,7 @@ function populateForm(profile) {
     fields.fullName.value = profile.fullName || "";
     fields.gender.value = profile.gender || "";
     fields.languagePreference.value = profile.languagePreference || "";
+    fields.storageConsent.checked = Boolean(profile.storageConsent);
     applyPreview();
     setStatus("Your saved profile is ready. You can update it anytime.", "status-success");
 }
@@ -170,10 +178,15 @@ authForm.addEventListener("submit", (event) => {
     showLoading();
 
     window.setTimeout(() => {
-        saveProfile({
+        const fullProfile = {
             ...profile,
+            createdAt: loadProfile()?.createdAt || Date.now(),
             updatedAt: Date.now()
-        });
+        };
+
+        saveProfile(fullProfile);
+
+        window.MyBhagavanthApp?.upsertProfileRecord(fullProfile, "signup");
         setStatus("Profile saved. Let's get started...", "status-success");
         window.location.href = "home.html";
     }, 900);
