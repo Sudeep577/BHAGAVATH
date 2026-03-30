@@ -1,0 +1,359 @@
+/* =========================================
+   ASTROLOGY PAGE REFINEMENTS
+   Aligned with app-wide premium gold system
+   ========================================= */
+
+.astro-disclaimer {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+    opacity: 0.9;
+}
+
+.astro-row-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.astro-detect-hint {
+    margin: -2px 0 7px;
+    font-size: 0.74rem;
+    font-style: italic;
+    color: var(--gold);
+    display: none;
+}
+
+/* Native select dropdown panels can ignore dark-theme backgrounds.
+   Force readable option colors for Windows/Android system pickers. */
+#astroRashi option,
+#astroCompatSign option {
+    color: #111111;
+    background: #ffffff;
+}
+
+.astro-compat-toggle {
+    margin: 2px 0 16px;
+}
+
+.astro-toggle-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-size: 0.88rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.astro-toggle-label input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.astro-toggle-track {
+    width: 42px;
+    height: 24px;
+    border-radius: 999px;
+    border: 1px solid rgba(246, 212, 129, 0.24);
+    background: rgba(246, 212, 129, 0.08);
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.astro-toggle-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(246, 212, 129, 0.45);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.astro-toggle-label input:checked ~ .astro-toggle-track {
+    border-color: var(--gold);
+    background: rgba(246, 212, 129, 0.18);
+    box-shadow: 0 0 0 3px rgba(246, 212, 129, 0.12);
+}
+
+.astro-toggle-label input:checked ~ .astro-toggle-track .astro-toggle-thumb {
+    transform: translateX(18px);
+    background: var(--gold-strong);
+}
+
+.astro-compat-box {
+    margin-bottom: 16px;
+    padding: 14px;
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(246, 212, 129, 0.06), rgba(246, 212, 129, 0.02));
+}
+
+.astro-luck-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.astro-luck-item {
+    text-align: center;
+    padding: 14px 10px;
+    border-radius: 14px;
+    border: 1px solid var(--panel-border);
+    background: linear-gradient(180deg, rgba(246, 212, 129, 0.07), rgba(246, 212, 129, 0.02));
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.astro-luck-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(246, 212, 129, 0.35);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.astro-luck-icon {
+    display: block;
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+}
+
+.astro-luck-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.astro-luck-value {
+    display: block;
+    font-family: "Playfair Display", serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gold-strong);
+}
+
+.astro-sign-badge {
+    margin-left: auto;
+    white-space: nowrap;
+    border-radius: 999px;
+    border: 1px solid rgba(246, 212, 129, 0.2);
+    background: rgba(246, 212, 129, 0.08);
+    color: var(--gold-strong);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+}
+
+.astro-typing-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 0;
+}
+
+.astro-typing-indicator span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: astroTypingDot 1.2s ease-in-out infinite;
+}
+
+.astro-typing-indicator span:nth-child(2) {
+    animation-delay: 0.18s;
+}
+
+.astro-typing-indicator span:nth-child(3) {
+    animation-delay: 0.36s;
+}
+
+@keyframes astroTypingDot {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.35;
+    }
+    30% {
+        transform: translateY(-6px);
+        opacity: 1;
+    }
+}
+
+.astro-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.astro-action-btn {
+    flex: 1;
+    padding: 11px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--panel-border);
+    background: rgba(246, 212, 129, 0.05);
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.astro-action-btn:hover {
+    border-color: rgba(246, 212, 129, 0.35);
+    background: rgba(246, 212, 129, 0.1);
+    transform: translateY(-1px);
+}
+
+.astro-action-btn:active {
+    transform: translateY(0);
+}
+
+#astroRefreshBtn {
+    border-color: rgba(168, 210, 255, 0.22);
+}
+
+#astroShareBtn {
+    border-color: rgba(185, 206, 255, 0.24);
+}
+
+#astroSaveBtn {
+    border-color: rgba(246, 212, 129, 0.28);
+}
+
+.astro-saved-section {
+    margin-top: 30px;
+}
+
+.astro-saved-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.astro-saved-header h3 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 1.08rem;
+    color: var(--gold);
+}
+
+.astro-clear-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 140, 125, 0.3);
+    background: transparent;
+    color: var(--danger);
+    font-family: "Inter", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.astro-clear-btn:hover {
+    border-color: rgba(255, 140, 125, 0.45);
+    background: rgba(255, 140, 125, 0.08);
+}
+
+.astro-saved-list {
+    display: grid;
+    gap: 10px;
+}
+
+.astro-saved-card {
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(246, 212, 129, 0.05), rgba(246, 212, 129, 0.015));
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.astro-saved-card:hover {
+    transform: translateY(-1px);
+    border-color: rgba(246, 212, 129, 0.35);
+}
+
+.astro-saved-card__top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.astro-saved-card__sign {
+    font-size: 1.1rem;
+}
+
+.astro-saved-card__name {
+    flex: 1;
+    min-width: 0;
+    color: var(--text);
+    font-family: "Playfair Display", serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.astro-saved-card__date {
+    color: var(--muted);
+    font-size: 0.72rem;
+}
+
+.astro-saved-card__rashi {
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .astro-row-two {
+        grid-template-columns: 1fr;
+    }
+
+    .astro-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .astro-luck-strip {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .astro-luck-item {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 10px;
+        padding: 12px 14px;
+    }
+
+    .astro-luck-icon {
+        margin-bottom: 0;
+        font-size: 1.15rem;
+    }
+
+    .astro-luck-label,
+    .astro-luck-value {
+        text-align: left;
+    }
+
+    .astro-sign-badge {
+        max-width: 52%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

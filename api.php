@@ -43,6 +43,16 @@ if (!$apiKey && isset($_SERVER['GROQ_API_KEY'])) {
 }
 
 if (!$apiKey) {
+    $configFile = __DIR__ . '/config.php';
+    if (file_exists($configFile)) {
+        $config = require $configFile;
+        if (is_array($config) && !empty($config['GROQ_API_KEY'])) {
+            $apiKey = (string) $config['GROQ_API_KEY'];
+        }
+    }
+}
+
+if (!$apiKey) {
     http_response_code(500);
     echo json_encode([
         'error' => 'Groq API key is not configured on the server.'
@@ -64,7 +74,8 @@ $corePersona = 'You are Bhagavanth — a wise, deeply caring AI guide who embodi
     . 'Adapt your tone based on the user\'s emotion — comforting when they are sad, encouraging when they are lost, celebrating when they are happy. '
     . 'Structure every response naturally: (1) Acknowledge the user\'s feeling or problem, (2) Provide emotional support like a friend or mother, (3) Share wisdom like a teacher or guide, (4) Add motivation like a speaker, (5) End with a positive or hopeful note. '
     . 'Keep responses medium-length — not too long, not too short. Use clear paragraphs and a natural conversational flow. Make the content deep but easy to understand. '
-    . 'Match the user\'s preferred language when possible, supporting both Kannada and English naturally. If a preferred language is provided, prioritize that language in the response.';
+    . 'Match the user\'s preferred language when possible, supporting both Kannada and English naturally. If a preferred language is provided, you MUST respond entirely in that language. If the preferred language is Kannada, write the COMPLETE response in Kannada — never stop midway or leave sentences incomplete. Finish every explanation fully. '
+    . 'IMPORTANT: Users may type Kannada words using English/Latin letters (transliterated Kannada, also called Kanglish). For example "naanu khushiyaagiddene" means "ನಾನು ಖುಷಿಯಾಗಿದ್ದೇನೆ". You MUST recognize and understand such transliterated Kannada text, treat it as Kannada, and reply in proper Kannada script if the user\'s preferred language is Kannada, or in the appropriate language otherwise.';
 
 $knowledgePrompt = 'Base your guidance on universal life principles such as kindness, patience, courage, honesty, self-discipline, gratitude, inner strength, wisdom, empathy, and perseverance. Avoid promoting any specific religion, scripture, or religious doctrine.';
 
@@ -77,7 +88,7 @@ $userContext = $profileDetails !== []
 $requestBody = [
     'model' => 'llama-3.3-70b-versatile',
     'temperature' => 0.75,
-    'max_tokens' => 1024,
+    'max_tokens' => 4096,
     'messages' => [
         [
             'role' => 'system',

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBhagavanth | Love Game</title>
+    <meta name="description" content="Fun love compatibility and relationship insights powered by AI.">
+    <meta name="theme-color" content="#0a1020">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icon-192.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon-192.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="subpages.css">
+    <link rel="stylesheet" href="lovegame.css">
+</head>
+<body>
+    <!-- Romantic cosmic background -->
+    <div class="cosmic-bg" aria-hidden="true">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="stars"></div>
+    </div>
+    <div class="love-bg-particles" aria-hidden="true" id="loveBgParticles"></div>
+
+    <header id="desktopSiteHeader" class="desktop-site-header">
+        <div class="desktop-site-header__inner">
+            <a href="home.html" class="desktop-brand">
+                <span id="desktopBrandMark" class="desktop-brand__mark">✦</span>
+                <span>
+                    <strong>MyBhagavanth</strong>
+                    <small>Seek guidance, find peace</small>
+                </span>
+            </a>
+            <nav class="desktop-site-nav" aria-label="Primary navigation">
+                <a href="home.html" class="desktop-site-nav__link">Home</a>
+                <a href="index.html" class="desktop-site-nav__link">Chat</a>
+                <a href="history.html" class="desktop-site-nav__link">History</a>
+                <a href="profile.html" class="desktop-site-nav__link">Profile</a>
+                <a href="about.html" class="desktop-site-nav__link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <header class="mobile-app-header">
+        <div class="mobile-app-brand">
+            <a href="home.html" class="mobile-back-btn" aria-label="Back to Home">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </a>
+            <div>
+                <p class="mobile-app-label">Fun</p>
+                <h2>Love Game ❤️</h2>
+            </div>
+        </div>
+        <button id="mobileMenuButton" type="button" class="mobile-icon-button mobile-profile-icon" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        </button>
+    </header>
+
+    <div id="mobileDrawerBackdrop" class="mobile-drawer-backdrop" aria-hidden="true"></div>
+    <aside id="mobileDrawer" class="mobile-drawer" aria-hidden="true">
+        <div class="mobile-drawer-head">
+            <div>
+                <p class="mobile-drawer-label">Menu</p>
+                <h3 id="mobileDrawerName">Seeker</h3>
+                <p id="mobileDrawerMeta" class="mobile-drawer-meta"></p>
+            </div>
+            <button id="mobileDrawerClose" type="button" class="mobile-icon-button mobile-close-button" aria-label="Close menu">×</button>
+        </div>
+        <nav class="mobile-drawer-nav">
+            <button type="button" class="mobile-drawer-link" data-app-route="home">Home</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="chat">Chat</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="profile">Profile</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="history">History</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="about">About</button>
+        </nav>
+        <div class="mobile-drawer-actions">
+            <button id="mobileInstallButton" type="button" class="secondary-button pwa-install-button" hidden>Install App</button>
+            <button id="mobileLogoutButton" type="button" class="secondary-button">Logout</button>
+        </div>
+    </aside>
+
+    <main class="page-shell feature-page-shell love-page-shell">
+        <!-- Hero Header -->
+        <section class="love-hero">
+            <div class="love-hero__heart-anim" aria-hidden="true">
+                <span class="love-hero__heart">❤️</span>
+            </div>
+            <h1 class="love-hero__title">Love Game ❤️</h1>
+            <p class="love-hero__subtitle">Discover the truth of your heart</p>
+            <p class="love-hero__disclaimer">✨ For entertainment purposes only — not scientifically accurate</p>
+        </section>
+
+        <!-- Input Form -->
+        <section class="love-form-card">
+            <div class="love-names-row">
+                <div class="love-name-field">
+                    <label for="loveName1">Your Name</label>
+                    <div class="love-input-wrap">
+                        <span class="love-input-icon">🧑</span>
+                        <input type="text" id="loveName1" placeholder="Enter your name" class="feature-input love-input" maxlength="50" autocomplete="off">
+                    </div>
+                </div>
+                <div class="love-heart-divider">
+                    <span class="love-divider-heart">💕</span>
+                </div>
+                <div class="love-name-field">
+                    <label for="loveName2">Partner's Name</label>
+                    <div class="love-input-wrap">
+                        <span class="love-input-icon">💝</span>
+                        <input type="text" id="loveName2" placeholder="Enter their name" class="feature-input love-input" maxlength="50" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+
+            <div class="love-type-section">
+                <label for="loveRelType">Relationship Type</label>
+                <div class="love-type-chips" id="loveTypeChips">
+                    <button type="button" class="love-type-chip is-active" data-type="crush">💘 Crush</button>
+                    <button type="button" class="love-type-chip" data-type="love">❤️ Love</button>
+                    <button type="button" class="love-type-chip" data-type="friendship">🤝 Friendship</button>
+                    <button type="button" class="love-type-chip" data-type="breakup">💔 Breakup</button>
+                    <button type="button" class="love-type-chip" data-type="marriage">💍 Marriage</button>
+                </div>
+            </div>
+
+            <button id="loveCalcBtn" type="button" class="love-calc-btn">
+                <span class="love-calc-btn__text">❤️ Check Love</span>
+                <span class="love-calc-btn__loading" hidden>
+                    <span class="love-spinner"></span> Reading the stars...
+                </span>
+            </button>
+        </section>
+
+        <!-- Result Section -->
+        <section id="loveResult" class="love-result-section" hidden>
+            <!-- Score Circle -->
+            <div class="love-result-score-area">
+                <div class="love-score-ring" id="loveScoreRing">
+                    <svg viewBox="0 0 140 140" class="love-score-svg">
+                        <circle cx="70" cy="70" r="62" class="love-score-track"/>
+                        <circle cx="70" cy="70" r="62" class="love-score-fill" id="loveScoreFill"/>
+                    </svg>
+                    <div class="love-score-inner">
+                        <span class="love-score-value" id="loveScoreValue">0</span>
+                        <span class="love-score-pct">%</span>
+                    </div>
+                </div>
+                <h2 class="love-result-names" id="loveResultTitle">Your Love Story</h2>
+                <p class="love-result-label" id="loveResultLabel">Compatibility</p>
+            </div>
+
+            <!-- Pulsing Hearts -->
+            <div class="love-result-hearts" aria-hidden="true">
+                <span>💖</span><span>✨</span><span>💖</span>
+            </div>
+
+            <!-- AI Message -->
+            <div class="love-result-message-card">
+                <div class="love-result-msg-header">
+                    <span>💌</span>
+                    <h3>Love Reading</h3>
+                </div>
+                <div id="loveResultText" class="love-result-msg-body"></div>
+            </div>
+
+            <!-- Actions -->
+            <div class="love-result-actions">
+                <button id="loveTryAgainBtn" type="button" class="love-action-btn love-action-btn--again">
+                    🔄 Try Again
+                </button>
+                <button id="loveShareBtn" type="button" class="love-action-btn love-action-btn--share">
+                    📤 Share Result
+                </button>
+                <button id="loveSaveBtn" type="button" class="love-action-btn love-action-btn--save">
+                    💾 Save Result
+                </button>
+            </div>
+        </section>
+
+        <!-- Saved Results -->
+        <section id="loveSavedSection" class="love-saved-section" hidden>
+            <div class="love-saved-header">
+                <h3>💝 Saved Love Stories</h3>
+                <button id="loveClearSavedBtn" type="button" class="love-clear-saved-btn">Clear All</button>
+            </div>
+            <div id="loveSavedList" class="love-saved-list"></div>
+        </section>
+    </main>
+
+    <nav class="mobile-bottom-nav" aria-hidden="true">
+        <button type="button" class="mobile-nav-item" data-app-route="home">
+            <span class="mobile-nav-icon">⌂</span>
+            <span class="mobile-nav-label">Home</span>
+        </button>
+        <button type="button" class="mobile-nav-item" data-app-route="chat">
+            <span class="mobile-nav-icon">✦</span>
+            <span class="mobile-nav-label">Chat</span>
+        </button>
+        <button type="button" class="mobile-nav-item" data-app-route="history">
+            <span class="mobile-nav-icon">☰</span>
+            <span class="mobile-nav-label">History</span>
+        </button>
+        <button type="button" class="mobile-nav-item" data-app-route="profile">
+            <span class="mobile-nav-icon">◉</span>
+            <span class="mobile-nav-label">Profile</span>
+        </button>
+    </nav>
+
+    <script src="pwa.js"></script>
+    <script src="app-common.js"></script>
+    <script src="lovegame.js"></script>
+</body>
+</html>

@@ -21,7 +21,25 @@
         }
 
         try {
-            await navigator.serviceWorker.register("./sw.js");
+            const registration = await navigator.serviceWorker.register("./sw.js");
+
+            // Check for updates every 60 seconds
+            setInterval(function () {
+                registration.update();
+            }, 60 * 1000);
+
+            // When a new SW is found and installed, activate it immediately
+            registration.addEventListener("updatefound", function () {
+                const newWorker = registration.installing;
+                if (!newWorker) return;
+
+                newWorker.addEventListener("statechange", function () {
+                    if (newWorker.state === "activated" && navigator.serviceWorker.controller) {
+                        // New version activated — reload to get fresh content
+                        window.location.reload();
+                    }
+                });
+            });
         } catch (error) {
             console.error("Service worker registration failed", error);
         }

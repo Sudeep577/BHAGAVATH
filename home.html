@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBhagavanth | Home</title>
+    <meta name="description" content="Your AI life guidance companion — chat, astrology, daily learning and more.">
+    <meta name="theme-color" content="#0a1020">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icon-192.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon-192.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="subpages.css">
+</head>
+<body>
+    <div class="cosmic-bg" aria-hidden="true">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="stars"></div>
+    </div>
+
+    <header id="desktopSiteHeader" class="desktop-site-header">
+        <div class="desktop-site-header__inner">
+            <a href="home.html" class="desktop-brand">
+                <span id="desktopBrandMark" class="desktop-brand__mark">✦</span>
+                <span>
+                    <strong>MyBhagavanth</strong>
+                    <small>Seek guidance, find peace</small>
+                </span>
+            </a>
+            <nav class="desktop-site-nav" aria-label="Primary navigation">
+                <a href="home.html" class="desktop-site-nav__link is-active">Home</a>
+                <a href="index.html" class="desktop-site-nav__link">Chat</a>
+                <a href="history.html" class="desktop-site-nav__link">History</a>
+                <a href="profile.html" class="desktop-site-nav__link">Profile</a>
+                <a href="about.html" class="desktop-site-nav__link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <header class="mobile-app-header">
+        <div class="mobile-app-brand">
+            <p class="mobile-app-label">Welcome</p>
+            <h2>MyBhagavanth</h2>
+        </div>
+        <button id="mobileMenuButton" type="button" class="mobile-icon-button mobile-profile-icon" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        </button>
+    </header>
+
+    <div id="mobileDrawerBackdrop" class="mobile-drawer-backdrop" aria-hidden="true"></div>
+    <aside id="mobileDrawer" class="mobile-drawer" aria-hidden="true">
+        <div class="mobile-drawer-head">
+            <div>
+                <p class="mobile-drawer-label">Menu</p>
+                <h3 id="mobileDrawerName">Seeker</h3>
+                <p id="mobileDrawerMeta" class="mobile-drawer-meta"></p>
+            </div>
+            <button id="mobileDrawerClose" type="button" class="mobile-icon-button mobile-close-button" aria-label="Close menu">×</button>
+        </div>
+        <nav class="mobile-drawer-nav">
+            <button type="button" class="mobile-drawer-link" data-app-route="home">Home</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="chat">Chat</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="profile">Profile</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="history">History</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="about">About</button>
+        </nav>
+        <div class="mobile-drawer-actions">
+            <button id="mobileInstallButton" type="button" class="secondary-button pwa-install-button" hidden>Install App</button>
+            <button id="mobileLogoutButton" type="button" class="secondary-button">Logout</button>
+        </div>
+    </aside>
+
+    <main class="page-shell home-page-shell">
+        <section class="home-hero">
+            <h1 class="home-hero__title">Namaskara, <span id="homeUserName">Seeker</span> 🙏</h1>
+            <p class="home-hero__subtitle">What would you like to explore today?</p>
+        </section>
+
+        <section class="home-grid">
+            <a href="index.html" class="home-card home-card--chat">
+                <div class="home-card__icon">💬</div>
+                <h3 class="home-card__title">Chat</h3>
+                <p class="home-card__desc">Ask Bhagavanth for life guidance, advice & support</p>
+            </a>
+            <a href="astrology.html" class="home-card home-card--astrology">
+                <div class="home-card__icon">🔮</div>
+                <h3 class="home-card__title">Astrology</h3>
+                <p class="home-card__desc">Discover your cosmic insights and daily horoscope</p>
+            </a>
+            <a href="dailylearning.html" class="home-card home-card--learning">
+                <div class="home-card__icon">📖</div>
+                <h3 class="home-card__title">Daily Learning</h3>
+                <p class="home-card__desc">Learn something new every day — wisdom & knowledge</p>
+            </a>
+            <a href="lovegame.html" class="home-card home-card--love">
+                <div class="home-card__icon">💖</div>
+                <h3 class="home-card__title">Love Game</h3>
+                <p class="home-card__desc">Fun love compatibility & relationship insights</p>
+            </a>
+            <a href="history.html" class="home-card home-card--history">
+                <div class="home-card__icon">📜</div>
+                <h3 class="home-card__title">History</h3>
+                <p class="home-card__desc">View your past conversations and guidance</p>
+            </a>
+            <a href="profile.html" class="home-card home-card--profile">
+                <div class="home-card__icon">👤</div>
+                <h3 class="home-card__title">Profile</h3>
+                <p class="home-card__desc">Manage your identity and preferences</p>
+            </a>
+        </section>
+    </main>
+
+    <nav class="mobile-bottom-nav" aria-hidden="true">
+        <button type="button" class="mobile-nav-item is-active" data-app-route="home">
+            <span class="mobile-nav-icon">⌂</span>
+            <span class="mobile-nav-label">Home</span>
+        </button>
+        <button type="button" class="mobile-nav-item" data-app-route="chat">
+            <span class="mobile-nav-icon">✦</span>
+            <span class="mobile-nav-label">Chat</span>
+        </button>
+        <button type="button" class="mobile-nav-item" data-app-route="history">
+            <span class="mobile-nav-icon">☰</span>
+            <span class="mobile-nav-label">History</span>
+        </button>
+        <button type="button" class="mobile-nav-item" data-app-route="profile">
+            <span class="mobile-nav-icon">◉</span>
+            <span class="mobile-nav-label">Profile</span>
+        </button>
+    </nav>
+
+    <script src="pwa.js"></script>
+    <script src="app-common.js"></script>
+    <script src="home.js"></script>
+</body>
+</html>

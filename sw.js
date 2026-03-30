@@ -1,19 +1,29 @@
-const CACHE_NAME = "mybhagavanth-static-v3";
+const CACHE_NAME = "mybhagavanth-static-v5";
 const STATIC_ASSETS = [
     "./",
+    "./home.html",
     "./index.html",
     "./login.html",
     "./profile.html",
     "./history.html",
     "./about.html",
+    "./astrology.html",
+    "./dailylearning.html",
+    "./lovegame.html",
     "./style.css",
     "./subpages.css",
     "./auth.css",
+    "./astrology.css",
+    "./lovegame.css",
     "./script.js",
     "./auth.js",
     "./profile.js",
     "./history.js",
     "./about.js",
+    "./home.js",
+    "./astrology.js",
+    "./dailylearning.js",
+    "./lovegame.js",
     "./app-common.js",
     "./pwa.js",
     "./manifest.webmanifest",
@@ -56,32 +66,17 @@ self.addEventListener("fetch", (event) => {
         return;
     }
 
-    const isHtmlRequest = request.headers.get("accept")?.includes("text/html");
-
-    if (isHtmlRequest) {
-        event.respondWith(
-            fetch(request)
-                .then((response) => {
-                    const responseClone = response.clone();
-                    caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
-                    return response;
-                })
-                .catch(() => caches.match(request).then((response) => response || caches.match("./index.html")))
-        );
-        return;
-    }
-
+    // Network-first for all same-origin requests
     event.respondWith(
-        caches.match(request).then((cachedResponse) => {
-            if (cachedResponse) {
-                return cachedResponse;
-            }
-
-            return fetch(request).then((response) => {
+        fetch(request)
+            .then((response) => {
                 const responseClone = response.clone();
                 caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
                 return response;
-            });
-        })
+            })
+            .catch(() =>
+                caches.match(request, { ignoreSearch: true })
+                    .then((cached) => cached || caches.match("./index.html"))
+            )
     );
 });

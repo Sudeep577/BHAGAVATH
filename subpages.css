@@ -1309,3 +1309,396 @@ body.hmodal-active {
         align-items: stretch;
     }
 }
+
+/* =========================================
+   HOME PAGE
+   ========================================= */
+.home-page-shell {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.home-hero {
+    text-align: center;
+    padding: 32px 16px 24px;
+}
+
+.home-hero__title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 0 0 8px;
+}
+
+.home-hero__subtitle {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin: 0;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 0 4px;
+}
+
+.home-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(246, 212, 129, 0.12);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.home-card:hover, .home-card:focus {
+    transform: translateY(-3px);
+    border-color: rgba(246, 212, 129, 0.35);
+    box-shadow: 0 8px 24px rgba(228, 184, 95, 0.1);
+}
+
+.home-card:active {
+    transform: scale(0.97);
+}
+
+.home-card__icon {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.home-card__title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin: 0 0 6px;
+}
+
+.home-card__desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.home-card--chat { border-color: rgba(100, 200, 255, 0.15); }
+.home-card--chat:hover { border-color: rgba(100, 200, 255, 0.4); box-shadow: 0 8px 24px rgba(100, 200, 255, 0.08); }
+.home-card--astrology { border-color: rgba(180, 130, 255, 0.15); }
+.home-card--astrology:hover { border-color: rgba(180, 130, 255, 0.4); box-shadow: 0 8px 24px rgba(180, 130, 255, 0.08); }
+.home-card--learning { border-color: rgba(100, 220, 150, 0.15); }
+.home-card--learning:hover { border-color: rgba(100, 220, 150, 0.4); box-shadow: 0 8px 24px rgba(100, 220, 150, 0.08); }
+.home-card--love { border-color: rgba(255, 120, 150, 0.15); }
+.home-card--love:hover { border-color: rgba(255, 120, 150, 0.4); box-shadow: 0 8px 24px rgba(255, 120, 150, 0.08); }
+.home-card--history { border-color: rgba(255, 200, 100, 0.15); }
+.home-card--history:hover { border-color: rgba(255, 200, 100, 0.4); }
+.home-card--profile { border-color: rgba(200, 200, 200, 0.1); }
+.home-card--profile:hover { border-color: rgba(200, 200, 200, 0.3); }
+
+@media (max-width: 480px) {
+    .home-page-shell { padding-left: 12px; padding-right: 12px; padding-bottom: 100px; }
+    .home-hero { padding: 20px 8px 16px; }
+    .home-hero__title { font-size: 1.35rem; }
+    .home-grid { gap: 10px; }
+    .home-card { padding: 20px 12px; border-radius: 14px; }
+    .home-card__icon { font-size: 2rem; }
+    .home-card__title { font-size: 0.95rem; }
+    .home-card__desc { font-size: 0.73rem; }
+}
+
+/* =========================================
+   FEATURE PAGES (Astrology, Daily Learning, Love Game)
+   ========================================= */
+.feature-page-shell {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 100px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.feature-page-header {
+    text-align: center;
+    padding: 24px 16px 20px;
+}
+
+.feature-page-header__icon {
+    font-size: 3rem;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.feature-page-header h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 0 0 8px;
+}
+
+.feature-page-header p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin: 0;
+}
+
+.feature-form-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(246, 212, 129, 0.12);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.feature-form-group {
+    margin-bottom: 16px;
+}
+
+.feature-form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+}
+
+.feature-input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-light, #e8e4dd);
+    font-size: 0.9rem;
+    font-family: "Inter", sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.feature-input:focus {
+    border-color: rgba(246, 212, 129, 0.4);
+}
+
+select.feature-input {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23999' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+
+textarea.feature-input {
+    resize: vertical;
+    font-family: "Inter", sans-serif;
+}
+
+.feature-submit-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #deae49, #c8942e);
+    color: #1a1200;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.feature-submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(228, 184, 95, 0.3);
+}
+
+.feature-submit-btn:active {
+    transform: scale(0.98);
+}
+
+.feature-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.feature-result-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(246, 212, 129, 0.15);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 16px;
+    animation: featureResultIn 0.4s ease-out;
+}
+
+.feature-result-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.feature-result-header span {
+    font-size: 1.4rem;
+}
+
+.feature-result-header h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin: 0;
+}
+
+.feature-result-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-light, #e8e4dd);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+@keyframes featureResultIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Topic buttons grid (Daily Learning) */
+.feature-topics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.feature-topic-btn {
+    padding: 12px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-light, #e8e4dd);
+    font-size: 0.82rem;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    text-align: center;
+}
+
+.feature-topic-btn:hover {
+    border-color: rgba(246, 212, 129, 0.3);
+    background: rgba(246, 212, 129, 0.06);
+}
+
+.feature-topic-btn.is-selected {
+    border-color: var(--gold);
+    background: rgba(246, 212, 129, 0.1);
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* Love Game specific */
+.love-names-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.love-names-row .feature-form-group {
+    flex: 1;
+}
+
+.love-heart-divider {
+    font-size: 1.6rem;
+    padding-top: 18px;
+    flex-shrink: 0;
+}
+
+.feature-submit-btn--love {
+    background: linear-gradient(135deg, #ff6b8a, #e84570);
+    color: #fff;
+}
+
+.feature-submit-btn--love:hover {
+    box-shadow: 0 4px 16px rgba(232, 69, 112, 0.3);
+}
+
+.love-result-card {
+    text-align: center;
+}
+
+.love-result-score {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.love-score-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 107, 138, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ff6b8a;
+    background: rgba(255, 107, 138, 0.06);
+}
+
+.love-score-circle span:last-child {
+    font-size: 1rem;
+    margin-left: 2px;
+}
+
+.love-result-card .feature-result-text {
+    text-align: left;
+}
+
+/* Mobile back button */
+.mobile-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--gold);
+    text-decoration: none;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.mobile-back-btn:hover {
+    background: rgba(246, 212, 129, 0.1);
+}
+
+.mobile-app-brand:has(.mobile-back-btn) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@media (max-width: 480px) {
+    .feature-page-shell { padding-left: 12px; padding-right: 12px; padding-bottom: 100px; }
+    .feature-page-header { padding: 16px 8px 12px; }
+    .feature-page-header__icon { font-size: 2.4rem; }
+    .feature-page-header h1 { font-size: 1.25rem; }
+    .feature-form-card { padding: 16px; }
+    .feature-topics-grid { gap: 8px; }
+    .feature-topic-btn { padding: 10px 8px; font-size: 0.78rem; }
+    .love-names-row { flex-direction: column; gap: 4px; }
+    .love-heart-divider { padding-top: 0; }
+}

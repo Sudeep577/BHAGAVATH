@@ -98,10 +98,10 @@
     function routeTo(target) {
         switch (target) {
             case "home":
-                window.location.href = "index.html#homeSection";
+                window.location.href = "home.html";
                 break;
             case "chat":
-                window.location.href = "index.html#chatSection";
+                window.location.href = "index.html";
                 break;
             case "history":
                 window.location.href = "history.html";
@@ -111,6 +111,15 @@
                 break;
             case "about":
                 window.location.href = "about.html";
+                break;
+            case "astrology":
+                window.location.href = "astrology.html";
+                break;
+            case "dailylearning":
+                window.location.href = "dailylearning.html";
+                break;
+            case "lovegame":
+                window.location.href = "lovegame.html";
                 break;
             default:
                 break;

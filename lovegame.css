@@ -1,0 +1,715 @@
+/* ════════════════════════════════════════════════
+   LOVE GAME — Romantic + Spiritual Theme
+   ════════════════════════════════════════════════ */
+
+/* ─── Romantic background overlay ─── */
+body {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(180, 40, 80, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(200, 60, 120, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse at 20% 60%, rgba(160, 50, 90, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at top, rgba(121, 83, 24, 0.14), transparent 28%),
+        linear-gradient(180deg, #0a1020 0%, #05070d 54%, #03050a 100%);
+}
+
+/* Override cosmic orbs to romantic tones */
+.orb-one {
+    background: radial-gradient(circle, rgba(255, 107, 138, 0.35), rgba(255, 107, 138, 0.02)) !important;
+}
+
+.orb-two {
+    background: radial-gradient(circle, rgba(180, 80, 200, 0.2), rgba(180, 80, 200, 0.02)) !important;
+}
+
+/* ─── Floating hearts background ─── */
+.love-bg-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.love-float-heart {
+    position: absolute;
+    bottom: -40px;
+    animation: loveFloatUp linear infinite;
+    pointer-events: none;
+}
+
+@keyframes loveFloatUp {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: var(--float-opacity, 0.2);
+    }
+    90% {
+        opacity: var(--float-opacity, 0.2);
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg) scale(0.6);
+        opacity: 0;
+    }
+}
+
+/* ─── Page shell override ─── */
+.love-page-shell {
+    max-width: 640px;
+    padding-top: 24px;
+}
+
+/* ─── Hero Section ─── */
+.love-hero {
+    text-align: center;
+    padding: 20px 0 28px;
+    animation: loveRiseIn 0.8s ease-out both;
+}
+
+.love-hero__heart-anim {
+    margin-bottom: 12px;
+}
+
+.love-hero__heart {
+    display: inline-block;
+    font-size: 3rem;
+    animation: loveHeartbeat 1.2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 80, 120, 0.5));
+}
+
+@keyframes loveHeartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.2); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.15); }
+    60% { transform: scale(1); }
+}
+
+.love-hero__title {
+    margin: 0 0 8px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6b8a, #ff9ec0, #ffd4e2, #ffb3cb, #ff6b8a);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: loveShimmer 4s ease-in-out infinite;
+}
+
+@keyframes loveShimmer {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 200% center; }
+}
+
+.love-hero__subtitle {
+    margin: 0 0 8px;
+    color: #ffb3cb;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.love-hero__disclaimer {
+    margin: 0;
+    font-size: 0.75rem;
+    color: rgba(255, 179, 203, 0.5);
+}
+
+@keyframes loveRiseIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Form Card ─── */
+.love-form-card {
+    background: linear-gradient(180deg, rgba(255, 107, 138, 0.06), rgba(180, 60, 100, 0.03));
+    border: 1px solid rgba(255, 107, 138, 0.15);
+    border-radius: 20px;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(16px);
+    animation: loveRiseIn 0.9s ease-out 0.1s both;
+}
+
+.love-names-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.love-name-field {
+    flex: 1;
+}
+
+.love-name-field label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #ffb3cb;
+    margin-bottom: 6px;
+    letter-spacing: 0.03em;
+}
+
+.love-input-wrap {
+    position: relative;
+}
+
+.love-input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.love-input {
+    padding-left: 38px !important;
+    border-color: rgba(255, 107, 138, 0.2) !important;
+    background: rgba(255, 107, 138, 0.04) !important;
+}
+
+.love-input:focus {
+    border-color: rgba(255, 107, 138, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(255, 107, 138, 0.1);
+}
+
+.love-heart-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding-top: 22px;
+}
+
+.love-divider-heart {
+    font-size: 1.6rem;
+    animation: loveDividerPulse 2s ease-in-out infinite;
+}
+
+@keyframes loveDividerPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* ─── Relationship Type Chips ─── */
+.love-type-section {
+    margin-bottom: 20px;
+}
+
+.love-type-section > label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #ffb3cb;
+    margin-bottom: 10px;
+    letter-spacing: 0.03em;
+}
+
+.love-type-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.love-type-chip {
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 107, 138, 0.2);
+    background: rgba(255, 107, 138, 0.04);
+    color: #e8c4d0;
+    font-size: 0.82rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.love-type-chip:hover {
+    border-color: rgba(255, 107, 138, 0.4);
+    background: rgba(255, 107, 138, 0.08);
+    transform: translateY(-1px);
+}
+
+.love-type-chip.is-active {
+    border-color: #ff6b8a;
+    background: rgba(255, 107, 138, 0.15);
+    color: #ff9ec0;
+    font-weight: 700;
+    box-shadow: 0 0 12px rgba(255, 107, 138, 0.2);
+}
+
+/* ─── Calculate Button ─── */
+.love-calc-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ff6b8a, #e84570, #d63060);
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.love-calc-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.love-calc-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(232, 69, 112, 0.4);
+}
+
+.love-calc-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.love-calc-btn:active {
+    transform: scale(0.98);
+}
+
+.love-calc-btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+    transform: none;
+}
+
+.love-calc-btn__text,
+.love-calc-btn__loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Spinner */
+.love-spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: loveSpin 0.8s linear infinite;
+}
+
+@keyframes loveSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─── Result Section ─── */
+.love-result-section {
+    animation: loveResultFadeIn 0.6s ease-out both;
+}
+
+@keyframes loveResultFadeIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Score Area ─── */
+.love-result-score-area {
+    text-align: center;
+    padding: 28px 0 20px;
+    animation: loveRiseIn 0.7s ease-out 0.1s both;
+}
+
+.love-score-ring {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 16px;
+}
+
+.love-score-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.love-score-track {
+    fill: none;
+    stroke: rgba(255, 107, 138, 0.1);
+    stroke-width: 6;
+}
+
+.love-score-fill {
+    fill: none;
+    stroke: #ff6b8a;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 389.56;
+    stroke-dashoffset: 389.56;
+    transition: stroke 0.3s;
+    filter: drop-shadow(0 0 8px rgba(255, 107, 138, 0.5));
+}
+
+.love-score-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.love-score-value {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ff9ec0;
+    text-shadow: 0 0 20px rgba(255, 107, 138, 0.4);
+}
+
+.love-score-pct {
+    font-family: "Playfair Display", serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ff9ec0;
+    align-self: flex-start;
+    margin-top: 14px;
+}
+
+.love-result-names {
+    margin: 0 0 4px;
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffd4e2;
+}
+
+.love-result-label {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #ff9ec0;
+    font-weight: 500;
+}
+
+/* ─── Pulsing Hearts Row ─── */
+.love-result-hearts {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 8px 0 16px;
+    font-size: 1.4rem;
+}
+
+.love-result-hearts span {
+    animation: loveHeartFloat 2s ease-in-out infinite;
+}
+
+.love-result-hearts span:nth-child(1) { animation-delay: 0s; }
+.love-result-hearts span:nth-child(2) { animation-delay: 0.3s; }
+.love-result-hearts span:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes loveHeartFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-6px) scale(1.15); }
+}
+
+/* ─── AI Message Card ─── */
+.love-result-message-card {
+    background: linear-gradient(180deg, rgba(255, 107, 138, 0.06), rgba(140, 40, 80, 0.04));
+    border: 1px solid rgba(255, 107, 138, 0.12);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 16px;
+    animation: loveRiseIn 0.8s ease-out 0.3s both;
+}
+
+.love-result-msg-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.love-result-msg-header span {
+    font-size: 1.4rem;
+}
+
+.love-result-msg-header h3 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffb3cb;
+}
+
+.love-result-msg-body {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #e8ddd0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Typing indicator */
+.love-typing-indicator {
+    display: inline-flex;
+    gap: 4px;
+    padding: 8px 0;
+}
+
+.love-typing-indicator span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff6b8a;
+    animation: loveTypingDot 1.4s ease-in-out infinite;
+}
+
+.love-typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.love-typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes loveTypingDot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-8px); opacity: 1; }
+}
+
+/* ─── Action Buttons ─── */
+.love-result-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    animation: loveRiseIn 0.8s ease-out 0.5s both;
+}
+
+.love-action-btn {
+    flex: 1;
+    padding: 12px 10px;
+    border: 1px solid rgba(255, 107, 138, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 107, 138, 0.05);
+    color: #e8c4d0;
+    font-size: 0.82rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.love-action-btn:hover {
+    border-color: rgba(255, 107, 138, 0.4);
+    background: rgba(255, 107, 138, 0.1);
+    transform: translateY(-1px);
+}
+
+.love-action-btn--again {
+    border-color: rgba(255, 179, 203, 0.25);
+}
+
+.love-action-btn--share {
+    border-color: rgba(160, 140, 255, 0.2);
+    color: #c4b8ff;
+}
+
+.love-action-btn--share:hover {
+    border-color: rgba(160, 140, 255, 0.4);
+    background: rgba(160, 140, 255, 0.08);
+}
+
+.love-action-btn--save {
+    border-color: rgba(228, 184, 95, 0.2);
+    color: var(--gold-strong);
+}
+
+.love-action-btn--save:hover {
+    border-color: rgba(228, 184, 95, 0.4);
+    background: rgba(228, 184, 95, 0.08);
+}
+
+/* ─── Saved Results Section ─── */
+.love-saved-section {
+    margin-top: 32px;
+    animation: loveRiseIn 0.7s ease-out both;
+}
+
+.love-saved-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.love-saved-header h3 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    color: #ffb3cb;
+}
+
+.love-clear-saved-btn {
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 140, 125, 0.25);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--danger);
+    font-size: 0.78rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.love-clear-saved-btn:hover {
+    background: rgba(255, 140, 125, 0.08);
+    border-color: rgba(255, 140, 125, 0.4);
+}
+
+.love-saved-list {
+    display: grid;
+    gap: 10px;
+}
+
+.love-saved-card {
+    background: rgba(255, 107, 138, 0.04);
+    border: 1px solid rgba(255, 107, 138, 0.1);
+    border-radius: 14px;
+    padding: 14px 16px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.love-saved-card:hover {
+    border-color: rgba(255, 107, 138, 0.25);
+    transform: translateY(-1px);
+}
+
+.love-saved-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.love-saved-card__names {
+    font-family: "Playfair Display", serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffd4e2;
+}
+
+.love-saved-card__score {
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ff6b8a;
+}
+
+.love-saved-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.75rem;
+    color: rgba(255, 179, 203, 0.5);
+    text-transform: capitalize;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 480px) {
+    .love-page-shell {
+        padding: 12px 12px 110px;
+    }
+
+    .love-hero {
+        padding: 14px 0 20px;
+    }
+
+    .love-hero__heart {
+        font-size: 2.4rem;
+    }
+
+    .love-hero__title {
+        font-size: 1.6rem;
+    }
+
+    .love-names-row {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .love-heart-divider {
+        padding: 4px 0;
+    }
+
+    .love-form-card {
+        padding: 18px 16px;
+    }
+
+    .love-type-chips {
+        gap: 6px;
+    }
+
+    .love-type-chip {
+        padding: 8px 12px;
+        font-size: 0.78rem;
+    }
+
+    .love-score-ring {
+        width: 130px;
+        height: 130px;
+    }
+
+    .love-score-value {
+        font-size: 2.4rem;
+    }
+
+    .love-result-actions {
+        flex-direction: column;
+    }
+
+    .love-action-btn {
+        text-align: center;
+    }
+
+    .love-result-message-card {
+        padding: 16px;
+    }
+}
+
+@media (min-width: 769px) {
+    .love-page-shell {
+        padding-top: 140px;
+    }
+
+    .love-hero {
+        padding: 28px 0 36px;
+    }
+
+    .love-hero__heart {
+        font-size: 3.5rem;
+    }
+
+    .love-form-card {
+        padding: 28px 24px;
+        border-radius: 24px;
+    }
+
+    .love-result-message-card {
+        padding: 24px;
+        border-radius: 22px;
+    }
+
+    .love-score-ring {
+        width: 180px;
+        height: 180px;
+    }
+
+    .love-score-value {
+        font-size: 3.4rem;
+    }
+}

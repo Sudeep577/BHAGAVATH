@@ -175,7 +175,7 @@ authForm.addEventListener("submit", (event) => {
             updatedAt: Date.now()
         });
         setStatus("Profile saved. Let's get started...", "status-success");
-        window.location.href = "index.html";
+        window.location.href = "home.html";
     }, 900);
 });
 
