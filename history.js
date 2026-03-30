@@ -31,13 +31,39 @@ function setStatus(message, type = "") {
 }
 
 function renderHeader(currentProfile) {
-    const theme = app.applyTheme(currentProfile);
+    const theme = app.applyTheme();
     historyKicker.textContent = `${theme.pageLabel} Archive`;
     mobileDrawerName.textContent = currentProfile.fullName;
-    mobileDrawerMeta.textContent = `${currentProfile.religion} • ${currentProfile.languagePreference}`;
-    mobileHeaderAvatar.textContent = theme.icon;
+    mobileDrawerMeta.textContent = currentProfile.languagePreference;
+    if (mobileHeaderAvatar) {
+        mobileHeaderAvatar.textContent = theme.icon;
+    }
     mobileLanguageSelect.value = currentProfile.languagePreference;
     typingAnimationToggle.checked = app.loadTypingPreference();
+    applyHeaderPhoto();
+}
+
+function applyHeaderPhoto() {
+    var photo = localStorage.getItem("mybhagavanth-profile-photo");
+    var menuBtn = document.getElementById("mobileMenuButton");
+    if (!menuBtn) return;
+    var existingImg = menuBtn.querySelector("img");
+    var svg = menuBtn.querySelector("svg");
+    if (photo) {
+        if (existingImg) {
+            existingImg.src = photo;
+        } else {
+            var img = document.createElement("img");
+            img.src = photo;
+            img.alt = "Profile";
+            img.style.cssText = "width:100%;height:100%;object-fit:cover;border-radius:50%;";
+            menuBtn.appendChild(img);
+        }
+        if (svg) svg.style.display = "none";
+    } else {
+        if (existingImg) existingImg.remove();
+        if (svg) svg.style.display = "";
+    }
 }
 
 function createMessageRow(role, text, icon, userInitial) {
@@ -95,7 +121,7 @@ document.addEventListener("keydown", (e) => {
 
 function renderHistory() {
     const history = app.loadHistory();
-    const theme = app.getTheme(profile.religion);
+    const theme = app.getTheme();
     const userInitial = String(profile.fullName || "U").trim().charAt(0).toUpperCase();
 
     historyThread.innerHTML = "";
@@ -109,7 +135,7 @@ function renderHistory() {
         empty.innerHTML = [
             '<span class="history-empty-state__icon">☸</span>',
             '<h3 class="history-empty-state__title">No reflections yet</h3>',
-            '<p class="history-empty-state__copy">Ask Bhagavanth a question to begin building your spiritual conversation history.</p>'
+            '<p class="history-empty-state__copy">Ask Bhagavanth a question to begin building your conversation history.</p>'
         ].join("");
         historyThread.appendChild(empty);
         return;
@@ -191,7 +217,7 @@ app.setupDrawer({
     backdrop: mobileDrawerBackdrop
 });
 app.setupInstallButtons([mobileInstallButton], setStatus);
-app.setupDesktopHeader(app.getTheme(profile.religion).icon);
+app.setupDesktopHeader(app.getTheme().icon);
 
 renderHeader(profile);
 renderHistory();

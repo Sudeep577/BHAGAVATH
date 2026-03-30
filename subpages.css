@@ -61,8 +61,9 @@
     gap: 28px;
 }
 
-.profile-side-card,
-.profile-main-card,
+/* ===== REDESIGNED PROFILE PAGE ===== */
+
+/* History/legacy shared card styles */
 .history-main-card,
 .history-side-card {
     background: rgba(255, 255, 255, 0.03);
@@ -71,39 +72,6 @@
     padding: 24px;
 }
 
-.profile-side-card {
-    display: grid;
-    gap: 20px;
-    align-content: start;
-}
-
-.religion-avatar-large {
-    width: 96px;
-    height: 96px;
-    border-radius: 28px;
-    display: grid;
-    place-items: center;
-    font-family: "Playfair Display", serif;
-    font-size: 2.2rem;
-    color: #231402;
-    background: radial-gradient(circle at 30% 30%, #ffe9ae, #deae49 65%, #885d16);
-    box-shadow: 0 0 32px rgba(228, 184, 95, 0.24);
-}
-
-body[data-religion="muslim"] .religion-avatar-large {
-    color: #07321f;
-    background: radial-gradient(circle at 30% 30%, #edfff3, #90ddb0 65%, #2f7a56);
-    box-shadow: 0 0 32px rgba(124, 211, 155, 0.24);
-}
-
-body[data-religion="christian"] .religion-avatar-large {
-    color: #35517b;
-    background: radial-gradient(circle at 30% 30%, #ffffff, #e3edff 65%, #88a5d6);
-    box-shadow: 0 0 32px rgba(136, 167, 218, 0.24);
-}
-
-.profile-side-card h3,
-.profile-main-card h3,
 .history-main-card h3,
 .history-side-card h3 {
     margin: 0;
@@ -111,81 +79,382 @@ body[data-religion="christian"] .religion-avatar-large {
     font-size: 1.4rem;
 }
 
-.profile-summary-text,
-.profile-side-note,
 .history-side-copy {
     margin: 0;
     color: var(--muted);
     line-height: 1.8;
 }
 
-.profile-read-grid {
+/* --- Profile Hero Banner --- */
+.prof-hero {
+    text-align: center;
+    padding: 12px 0 40px;
+    animation: rise-in 0.7s ease-out both;
+}
+
+.prof-hero__avatar-ring {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(from 180deg, rgba(228,184,95,0.5), rgba(228,184,95,0.05) 50%, rgba(228,184,95,0.5));
+    padding: 4px;
+    margin-bottom: 20px;
+    animation: prof-ring-spin 8s linear infinite;
+}
+
+@keyframes prof-ring-spin {
+    to { transform: rotate(360deg); }
+}
+
+.prof-hero__avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
     display: grid;
-    gap: 14px;
+    place-items: center;
+    font-family: "Playfair Display", serif;
+    font-size: 2.6rem;
+    color: #231402;
+    background: radial-gradient(circle at 30% 30%, #ffe9ae, #deae49 65%, #885d16);
+    box-shadow: 0 0 40px rgba(228, 184, 95, 0.3);
 }
 
-.profile-read-item {
-    padding: 14px 16px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+.prof-hero__name {
+    margin: 0 0 8px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.15;
 }
 
-.profile-read-item span {
-    display: block;
+.prof-hero__tagline {
+    margin: 0 0 18px;
     color: var(--muted);
-    font-size: 0.82rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-inline: auto;
+    font-size: 0.95rem;
 }
 
-.profile-read-item strong {
-    display: block;
-    margin-top: 6px;
+.prof-hero__badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.prof-badge {
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
     color: var(--gold-strong);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
 }
 
-.profile-form {
+.prof-hero__verse {
+    margin: 0;
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* --- Profile Content Grid --- */
+.prof-grid {
     display: grid;
-    gap: 20px;
+    grid-template-columns: 340px minmax(0, 1fr);
+    gap: 24px;
+    animation: rise-in 0.85s ease-out 0.06s both;
 }
 
-.profile-form-grid {
+/* --- Info Card (left sidebar) --- */
+.prof-info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 28px 24px;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    gap: 22px;
+    align-content: start;
+    position: sticky;
+    top: 108px;
+    transition: transform 220ms ease, border-color 220ms ease;
 }
 
-.profile-field {
+.prof-info-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.prof-info-card__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.prof-info-card__icon {
+    font-size: 1.5rem;
+}
+
+.prof-info-card__title {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 1.2rem;
+}
+
+.prof-stat-list {
+    display: grid;
+    gap: 12px;
+}
+
+.prof-stat {
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transition: background 180ms ease, border-color 180ms ease;
+}
+
+.prof-stat:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.prof-stat__label {
+    color: var(--muted);
+    font-size: 0.84rem;
+    font-weight: 500;
+}
+
+.prof-stat__value {
+    color: var(--gold-strong);
+    font-size: 0.94rem;
+}
+
+.prof-info-card__note {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.75;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border-left: 3px solid var(--gold);
+}
+
+.prof-info-card__actions {
     display: grid;
     gap: 10px;
 }
 
-.profile-field label {
-    color: var(--gold-strong);
-    font-weight: 600;
+.prof-info-card__actions .secondary-button,
+.prof-info-card__actions .nav-link-button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
 }
 
-.profile-field input,
-.profile-field select {
+.prof-logout-btn {
     width: 100%;
-    padding: 15px 16px;
-    border-radius: 18px;
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 125, 110, 0.2);
+    border-radius: 14px;
+    background: rgba(255, 125, 110, 0.06);
+    color: var(--danger);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 200ms ease, border-color 200ms ease;
+}
+
+.prof-logout-btn:hover {
+    background: rgba(255, 125, 110, 0.12);
+    border-color: rgba(255, 125, 110, 0.35);
+}
+
+/* --- Edit Card (right) --- */
+
+/* Photo Upload */
+.prof-photo-upload {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.prof-photo-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    color: var(--muted);
+}
+
+.prof-photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.prof-photo-placeholder {
+    opacity: 0.5;
+}
+
+.prof-photo-preview.has-photo .prof-photo-placeholder {
+    display: none;
+}
+
+.prof-photo-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.prof-photo-btn {
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 8px 18px;
+}
+
+.prof-photo-remove {
+    background: none;
+    border: none;
+    color: var(--danger);
+    font-size: 0.82rem;
+    cursor: pointer;
+    padding: 4px 0;
+    text-align: left;
+}
+
+.prof-photo-remove:hover {
+    text-decoration: underline;
+}
+
+.prof-edit-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.prof-edit-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.prof-edit-card__header {
+    margin-bottom: 28px;
+}
+
+.prof-edit-card__title {
+    margin: 0 0 8px;
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+}
+
+.prof-edit-card__desc {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+/* --- Form Styles --- */
+.prof-form {
+    display: grid;
+    gap: 22px;
+}
+
+.prof-form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.prof-field {
+    display: grid;
+    gap: 8px;
+}
+
+.prof-field label {
+    color: var(--gold-strong);
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.02em;
+}
+
+.prof-field input,
+.prof-field select {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(255, 255, 255, 0.04);
     color: var(--text);
+    font-size: 0.95rem;
     outline: none;
-    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    transition: border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
 }
 
-body[data-religion="christian"] .profile-field input,
-body[data-religion="christian"] .profile-field select {
-    background: rgba(122, 147, 191, 0.08);
+.prof-field input:focus,
+.prof-field select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-shadow);
+    background: rgba(255, 255, 255, 0.06);
 }
 
-.profile-field input:focus,
-.profile-field select:focus {
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
-    transform: translateY(-1px);
+.prof-field input::placeholder {
+    color: var(--muted);
+    opacity: 0.6;
+}
+
+/* --- Save Button --- */
+.prof-save-btn {
+    width: 100%;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    background: linear-gradient(135deg, #a36b18, #f2c766 52%, #b4802a 100%);
+    color: #160d02;
+    box-shadow: 0 12px 28px rgba(228, 184, 95, 0.22);
+    transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+}
+
+.prof-save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px rgba(228, 184, 95, 0.32);
+}
+
+.prof-save-btn:active {
+    transform: translateY(0);
+}
+
+.prof-save-btn:disabled {
+    opacity: 0.7;
+    cursor: progress;
 }
 
 .field-inline-error,
@@ -483,20 +752,6 @@ body.hmodal-active {
     transition: transform 0.3s ease;
 }
 
-body[data-religion="muslim"] .hmodal-box {
-    box-shadow:
-        0 0 0 1px rgba(124, 211, 155, 0.08),
-        0 24px 80px rgba(0, 0, 0, 0.55),
-        0 0 60px rgba(124, 211, 155, 0.06);
-}
-
-body[data-religion="christian"] .hmodal-box {
-    box-shadow:
-        0 0 0 1px rgba(136, 167, 218, 0.08),
-        0 24px 80px rgba(0, 0, 0, 0.55),
-        0 0 60px rgba(136, 167, 218, 0.06);
-}
-
 .hmodal-overlay.is-open .hmodal-box {
     transform: scale(1) translateY(0);
 }
@@ -602,18 +857,6 @@ body[data-religion="christian"] .hmodal-box {
     box-shadow: 0 4px 12px rgba(228, 184, 95, 0.2);
 }
 
-body[data-religion="muslim"] .history-msg--ai .history-msg__avatar {
-    color: #07321f;
-    background: radial-gradient(circle at 30% 30%, #edfff3, #90ddb0 65%, #2f7a56);
-    box-shadow: 0 4px 12px rgba(124, 211, 155, 0.2);
-}
-
-body[data-religion="christian"] .history-msg--ai .history-msg__avatar {
-    color: #35517b;
-    background: radial-gradient(circle at 30% 30%, #fff, #e3edff 65%, #88a5d6);
-    box-shadow: 0 4px 12px rgba(136, 167, 218, 0.2);
-}
-
 .history-msg__body {
     flex: 1;
     min-width: 0;
@@ -715,18 +958,6 @@ body[data-religion="christian"] .history-msg--ai .history-msg__avatar {
     box-shadow: 0 8px 20px rgba(228, 184, 95, 0.18);
 }
 
-body[data-religion="muslim"] .history-info-card__icon {
-    color: #07321f;
-    background: radial-gradient(circle at 30% 30%, #edfff3, #90ddb0 65%, #2f7a56);
-    box-shadow: 0 8px 20px rgba(124, 211, 155, 0.18);
-}
-
-body[data-religion="christian"] .history-info-card__icon {
-    color: #35517b;
-    background: radial-gradient(circle at 30% 30%, #fff, #e3edff 65%, #88a5d6);
-    box-shadow: 0 8px 20px rgba(136, 167, 218, 0.18);
-}
-
 .history-info-card h3 {
     margin: 0;
     font-family: "Playfair Display", serif;
@@ -783,17 +1014,15 @@ body[data-religion="christian"] .history-info-card__icon {
         margin-top: 6px;
     }
 
-    .profile-side-card,
-    .profile-main-card,
+    .prof-info-card,
+    .prof-edit-card,
     .history-main-card,
     .history-side-card,
     .conversation-group,
-    .profile-read-item {
+    .prof-stat {
         transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
     }
 
-    .profile-side-card:hover,
-    .profile-main-card:hover,
     .history-main-card:hover,
     .history-side-card:hover,
     .conversation-group:hover {
@@ -801,16 +1030,20 @@ body[data-religion="christian"] .history-info-card__icon {
         border-color: rgba(255, 255, 255, 0.1);
     }
 
-    .profile-main-card h3,
     .history-main-card h3 {
         margin-bottom: 10px;
     }
 }
 
 @media (max-width: 960px) {
+    .prof-grid,
     .profile-layout,
     .history-layout {
         grid-template-columns: 1fr;
+    }
+
+    .prof-info-card {
+        position: static;
     }
 }
 
@@ -822,6 +1055,91 @@ body[data-religion="christian"] .history-info-card__icon {
 
     .subpage-card {
         padding: 18px 16px;
+    }
+
+    /* --- Mobile Profile Redesign --- */
+    .prof-hero {
+        padding: 8px 0 28px;
+    }
+
+    .prof-hero__avatar-ring {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 16px;
+    }
+
+    .prof-hero__avatar {
+        font-size: 2.2rem;
+    }
+
+    .prof-hero__name {
+        font-size: 1.6rem;
+    }
+
+    .prof-hero__tagline {
+        font-size: 0.88rem;
+        margin-bottom: 14px;
+    }
+
+    .prof-hero__badges {
+        gap: 8px;
+    }
+
+    .prof-badge {
+        padding: 5px 13px;
+        font-size: 0.75rem;
+    }
+
+    .prof-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .prof-info-card {
+        position: static;
+        padding: 22px 18px;
+        border-radius: 16px;
+        gap: 16px;
+    }
+
+    .prof-stat {
+        padding: 14px 16px;
+    }
+
+    .prof-edit-card {
+        padding: 22px 18px;
+        border-radius: 16px;
+    }
+
+    .prof-edit-card__header {
+        margin-bottom: 20px;
+    }
+
+    .prof-edit-card__title {
+        font-size: 1.3rem;
+    }
+
+    .prof-form__grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .prof-field input,
+    .prof-field select {
+        padding: 13px 16px;
+        border-radius: 12px;
+        font-size: 1rem;
+    }
+
+    .prof-save-btn {
+        padding: 15px 20px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+    }
+
+    .prof-info-card__actions {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
     }
 
     .profile-form-grid,
@@ -893,5 +1211,101 @@ body[data-religion="christian"] .history-info-card__icon {
     .section-actions .pwa-install-button,
     .section-actions button {
         width: 100%;
+    }
+}
+
+/* ===== ABOUT PAGE ===== */
+
+.about-page-header {
+    text-align: center;
+    padding: 8px 0 28px;
+    animation: rise-in 0.7s ease-out both;
+}
+
+.about-page-title {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    line-height: 1;
+}
+
+.about-tagline {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 1.1rem;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 22px;
+    padding: 0 0 32px;
+    animation: rise-in 0.85s ease-out 0.06s both;
+}
+
+.about-card {
+    background: var(--surface-strong);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    padding: 28px;
+    backdrop-filter: blur(20px);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.about-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3);
+}
+
+.about-card__icon {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+}
+
+.about-card__title {
+    margin: 0 0 10px;
+    font-family: "Playfair Display", serif;
+    font-size: 1.25rem;
+    color: var(--gold-strong);
+}
+
+.about-card__text {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+.about-footer-note {
+    text-align: center;
+    padding: 24px 0 48px;
+    animation: rise-in 0.9s ease-out 0.12s both;
+}
+
+.about-footer-note > p {
+    margin: 0 0 20px;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+.about-footer-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-page-header {
+        padding: 0 0 20px;
+    }
+
+    .about-footer-actions {
+        flex-direction: column;
+        align-items: stretch;
     }
 }

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyBhagavanth | History</title>
-    <meta name="description" content="Browse your previous questions and AI responses on MyBhagavanth.">
+    <title>MyBhagavanth | About</title>
+    <meta name="description" content="Learn more about MyBhagavanth — your AI life guidance companion.">
     <meta name="theme-color" content="#0a1020">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -36,9 +36,9 @@
                 <nav class="desktop-site-nav" aria-label="Primary navigation">
                     <a href="index.html" class="desktop-site-nav__link">Home</a>
                     <a href="index.html#chatSection" class="desktop-site-nav__link">Chat</a>
-                    <a href="history.html" class="desktop-site-nav__link is-active">History</a>
+                    <a href="history.html" class="desktop-site-nav__link">History</a>
                     <a href="profile.html" class="desktop-site-nav__link">Profile</a>
-                    <a href="about.html" class="desktop-site-nav__link">About</a>
+                    <a href="about.html" class="desktop-site-nav__link is-active">About</a>
                 </nav>
             </div>
         </header>
@@ -70,24 +70,6 @@
             <button type="button" class="mobile-drawer-link" data-app-route="about">About</button>
         </nav>
 
-        <div class="mobile-settings-card">
-            <label class="mobile-settings-label" for="mobileLanguageSelect">Language Selection</label>
-            <select id="mobileLanguageSelect" class="mobile-settings-select">
-                <option value="Kannada">Kannada</option>
-                <option value="English">English</option>
-            </select>
-        </div>
-
-        <div class="mobile-settings-card">
-            <label class="mobile-settings-switch" for="typingAnimationToggle">
-                <span>
-                    <strong>Settings</strong>
-                    <small>Typing animation in responses</small>
-                </span>
-                <input id="typingAnimationToggle" type="checkbox" checked>
-            </label>
-        </div>
-
         <div class="mobile-drawer-actions">
             <button id="mobileInstallButton" type="button" class="secondary-button pwa-install-button" hidden>Install App</button>
             <button id="mobileLogoutButton" type="button" class="secondary-button">Logout</button>
@@ -95,49 +77,80 @@
     </aside>
 
     <main class="page-shell">
-        <section class="history-page-header">
-            <div class="history-page-header__top">
-                <div>
-                    <p id="historyKicker" class="subpage-kicker">Your Memory</p>
-                    <h1 class="history-page-title">Your Reflections</h1>
-                </div>
-                <div class="history-page-header__actions">
-                    <span class="history-count-badge" id="historyCountBadge">0 conversations</span>
-                    <button id="clearHistoryButton" type="button" class="secondary-button history-clear-btn">Clear All</button>
-                </div>
-            </div>
-            <p id="historyStatus" class="page-status" aria-live="polite"></p>
+        <section class="about-page-header">
+            <p class="subpage-kicker">About</p>
+            <h1 class="about-page-title">MyBhagavanth</h1>
+            <p class="about-tagline">Seek guidance, find peace.</p>
         </section>
 
-        <div class="history-page-layout">
-            <section class="history-chat-panel">
-                <div id="historyThread" class="history-chat-thread"></div>
+        <div class="about-grid">
+            <section class="about-card">
+                <div class="about-card__icon">✦</div>
+                <h3 class="about-card__title">What is MyBhagavanth?</h3>
+                <p class="about-card__text">MyBhagavanth is an AI-powered life guidance companion. It listens to your thoughts, understands your emotions, and responds with calm, thoughtful, and motivational guidance — like a wise friend, a caring parent, and a supportive teacher all in one.</p>
+            </section>
+
+            <section class="about-card">
+                <div class="about-card__icon">🎯</div>
+                <h3 class="about-card__title">Our Mission</h3>
+                <p class="about-card__text">To provide everyone with a safe, private space to share their worries, seek advice, and receive meaningful guidance — anytime, anywhere. We believe everyone deserves someone who listens without judgment.</p>
+            </section>
+
+            <section class="about-card">
+                <div class="about-card__icon">🤝</div>
+                <h3 class="about-card__title">How It Works</h3>
+                <p class="about-card__text">Simply type your question or share what's on your mind. Bhagavanth uses advanced AI to understand your feelings and provide personalized, thoughtful responses in your preferred language — Kannada or English.</p>
+            </section>
+
+            <section class="about-card">
+                <div class="about-card__icon">🔒</div>
+                <h3 class="about-card__title">Your Privacy</h3>
+                <p class="about-card__text">Your profile and conversation history are stored locally on your device. We do not collect, store, or share your personal data on any server. Your conversations stay between you and Bhagavanth.</p>
+            </section>
+
+            <section class="about-card">
+                <div class="about-card__icon">🌍</div>
+                <h3 class="about-card__title">For Everyone</h3>
+                <p class="about-card__text">MyBhagavanth is designed for everyone — regardless of background, belief, or identity. Our guidance is based on universal values like kindness, courage, patience, gratitude, and inner strength.</p>
+            </section>
+
+            <section class="about-card">
+                <div class="about-card__icon">📱</div>
+                <h3 class="about-card__title">Install as App</h3>
+                <p class="about-card__text">MyBhagavanth works as a Progressive Web App (PWA). You can install it on your phone or desktop for quick access — no app store needed. Just tap the Install button when prompted.</p>
             </section>
         </div>
+
+        <section class="about-footer-note">
+            <p>Built with ❤️ to help people navigate life's challenges with confidence and clarity.</p>
+            <div class="about-footer-actions">
+                <a href="index.html" class="secondary-button nav-link-button">Back To Home</a>
+                <a href="index.html#chatSection" class="secondary-button nav-link-button">Start Chatting</a>
+            </div>
+        </section>
     </main>
 
-    <!-- Conversation detail modal -->
-    <div id="historyModal" class="hmodal-overlay" aria-hidden="true">
-        <div class="hmodal-box" role="dialog" aria-labelledby="hmodalTitle">
-            <header class="hmodal-header">
-                <h2 id="hmodalTitle" class="hmodal-title">Conversation Details</h2>
-                <span id="hmodalTime" class="hmodal-time"></span>
-                <button id="hmodalClose" type="button" class="hmodal-close" aria-label="Close">&times;</button>
-            </header>
-            <div id="hmodalBody" class="hmodal-body"></div>
-        </div>
-    </div>
-
+        <footer class="desktop-site-footer">
+            <div class="desktop-site-footer__inner">
+                <p>Seek guidance, find peace.</p>
+                <nav class="desktop-site-footer__nav" aria-label="Footer navigation">
+                    <a href="index.html">Home</a>
+                    <a href="history.html">History</a>
+                    <a href="profile.html">Profile</a>
+                    <a href="about.html">About</a>
+                </nav>
+            </div>
+        </footer>
 
     <nav class="mobile-bottom-nav" aria-hidden="true">
         <button type="button" class="mobile-nav-item" data-app-route="home"><span class="mobile-nav-icon">⌂</span><span class="mobile-nav-label">Home</span></button>
         <button type="button" class="mobile-nav-item" data-app-route="chat"><span class="mobile-nav-icon">✦</span><span class="mobile-nav-label">Chat</span></button>
-        <button type="button" class="mobile-nav-item is-active" data-app-route="history"><span class="mobile-nav-icon">☰</span><span class="mobile-nav-label">History</span></button>
+        <button type="button" class="mobile-nav-item" data-app-route="history"><span class="mobile-nav-icon">☰</span><span class="mobile-nav-label">History</span></button>
         <button type="button" class="mobile-nav-item" data-app-route="profile"><span class="mobile-nav-icon">◉</span><span class="mobile-nav-label">Profile</span></button>
     </nav>
 
     <script src="pwa.js"></script>
     <script src="app-common.js"></script>
-    <script src="history.js"></script>
+    <script src="about.js"></script>
 </body>
 </html>

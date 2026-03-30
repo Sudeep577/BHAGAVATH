@@ -2,35 +2,16 @@
     const PROFILE_STORAGE_KEY = "mybhagavanth-user-profile";
     const HISTORY_STORAGE_KEY = "mybhagavanth-history";
     const TYPING_PREF_KEY = "mybhagavanth-typing-animation";
+    const PHOTO_STORAGE_KEY = "mybhagavanth-profile-photo";
 
-    const RELIGION_THEMES = {
-        Hindu: {
-            bodyTheme: "hindu",
-            icon: "ॐ",
-            chip: "Hindu Wisdom Mode",
-            pageLabel: "Bhagavad Gita Wisdom",
-            supportText: "Krishna-inspired dharmic guidance",
-            pageQuote: "You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions.",
-            pageVerse: "Bhagavad Gita 2.47"
-        },
-        Muslim: {
-            bodyTheme: "muslim",
-            icon: "☪",
-            chip: "Quranic Reflection Mode",
-            pageLabel: "Quranic Reflection",
-            supportText: "Peaceful guidance inspired by Quranic values",
-            pageQuote: "Indeed, in the remembrance of Allah do hearts find rest.",
-            pageVerse: "Quran 13:28"
-        },
-        Christian: {
-            bodyTheme: "christian",
-            icon: "✝",
-            chip: "Grace And Faith Mode",
-            pageLabel: "Grace And Wisdom",
-            supportText: "Compassionate counsel inspired by the Bible",
-            pageQuote: "Come to me, all who are weary and burdened, and I will give you rest.",
-            pageVerse: "Matthew 11:28"
-        }
+    const DEFAULT_THEME = {
+        bodyTheme: "default",
+        icon: "✦",
+        chip: "Guidance Mode",
+        pageLabel: "Life Wisdom",
+        supportText: "Calm, thoughtful guidance for a better life",
+        pageQuote: "Believe in yourself, stay positive, and keep moving forward — every step counts.",
+        pageVerse: ""
     };
 
     function loadJson(key, fallback) {
@@ -49,6 +30,18 @@
 
     function saveProfile(profile) {
         localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
+    }
+
+    function loadProfilePhoto() {
+        return localStorage.getItem(PHOTO_STORAGE_KEY) || null;
+    }
+
+    function saveProfilePhoto(base64) {
+        localStorage.setItem(PHOTO_STORAGE_KEY, base64);
+    }
+
+    function removeProfilePhoto() {
+        localStorage.removeItem(PHOTO_STORAGE_KEY);
     }
 
     function requireProfile() {
@@ -79,14 +72,12 @@
         localStorage.setItem(TYPING_PREF_KEY, enabled ? "enabled" : "disabled");
     }
 
-    function getTheme(religion) {
-        return RELIGION_THEMES[religion] || RELIGION_THEMES.Hindu;
+    function getTheme() {
+        return DEFAULT_THEME;
     }
 
-    function applyTheme(profile) {
-        const theme = getTheme(profile.religion);
-        document.body.dataset.religion = theme.bodyTheme;
-        return theme;
+    function applyTheme() {
+        return DEFAULT_THEME;
     }
 
     function formatTimestamp(value) {
@@ -117,6 +108,9 @@
                 break;
             case "profile":
                 window.location.href = "profile.html";
+                break;
+            case "about":
+                window.location.href = "about.html";
                 break;
             default:
                 break;
@@ -210,9 +204,13 @@
         PROFILE_STORAGE_KEY,
         HISTORY_STORAGE_KEY,
         TYPING_PREF_KEY,
-        RELIGION_THEMES,
+        PHOTO_STORAGE_KEY,
+        DEFAULT_THEME,
         loadProfile,
         saveProfile,
+        loadProfilePhoto,
+        saveProfilePhoto,
+        removeProfilePhoto,
         requireProfile,
         loadHistory,
         clearHistory,

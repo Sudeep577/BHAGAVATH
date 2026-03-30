@@ -1,7 +1,7 @@
 {
     "name": "MyBhagavanth",
     "short_name": "Bhagavanth",
-    "description": "A spiritual AI companion for reflective guidance across personalized traditions.",
+    "description": "An AI companion for thoughtful guidance and life wisdom.",
     "start_url": "./index.html",
     "scope": "./",
     "display": "standalone",

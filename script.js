@@ -5,8 +5,7 @@ const MAX_HISTORY_ITEMS = 6;
 const promptInput = document.getElementById("promptInput");
 const askButton = document.getElementById("askButton");
 const statusPanel = document.getElementById("statusPanel");
-const responseCard = document.getElementById("responseCard");
-const responseContent = document.getElementById("responseContent");
+const chatMessages = document.getElementById("chatMessages");
 const historyList = document.getElementById("historyList");
 const clearHistoryButton = document.getElementById("clearHistoryButton");
 const historyItemTemplate = document.getElementById("historyItemTemplate");
@@ -32,7 +31,6 @@ const mobileChangeProfileButton = document.getElementById("mobileChangeProfileBu
 const mobileAskNowButton = document.getElementById("mobileAskNowButton");
 const mobileProfileName = document.getElementById("mobileProfileName");
 const mobileProfileBadge = document.getElementById("mobileProfileBadge");
-const mobileProfileReligion = document.getElementById("mobileProfileReligion");
 const mobileProfileLanguage = document.getElementById("mobileProfileLanguage");
 const mobileProfileGender = document.getElementById("mobileProfileGender");
 const mobileInstallButton = document.getElementById("mobileInstallButton");
@@ -44,43 +42,17 @@ const TYPING_PREF_KEY = "mybhagavanth-typing-animation";
 let typingTimer = null;
 let activeMobileSection = "home";
 
-const RELIGION_THEMES = {
-    Hindu: {
-        bodyTheme: "hindu",
-        icon: "ॐ",
-        chip: "Hindu Wisdom Mode",
-        kicker: "Bhagavad Gita Wisdom",
-        quote: "You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions.",
-        verse: "Bhagavad Gita 2.47",
-        responseTitle: "Krishna's Guidance",
-        responseSubtitle: "Gentle wisdom rooted in dharma",
-        supportText: "Bhagavanth will respond with Bhagavad Gita inspired calm, dharmic guidance.",
-        loadingText: "Receiving Krishna's guidance"
-    },
-    Muslim: {
-        bodyTheme: "muslim",
-        icon: "☪",
-        chip: "Quranic Reflection Mode",
-        kicker: "Quranic Reflection",
-        quote: "Indeed, in the remembrance of Allah do hearts find rest.",
-        verse: "Quran 13:28",
-        responseTitle: "Peaceful Guidance",
-        responseSubtitle: "Ethical direction shaped by Quranic values",
-        supportText: "Bhagavanth will respond with respectful, peaceful guidance inspired by Quranic teachings.",
-        loadingText: "Receiving peaceful guidance"
-    },
-    Christian: {
-        bodyTheme: "christian",
-        icon: "✝",
-        chip: "Grace And Faith Mode",
-        kicker: "Grace And Wisdom",
-        quote: "Come to me, all who are weary and burdened, and I will give you rest.",
-        verse: "Matthew 11:28",
-        responseTitle: "Faithful Guidance",
-        responseSubtitle: "Compassionate counsel shaped by biblical hope",
-        supportText: "Bhagavanth will respond with compassionate, faith-centered guidance inspired by the Bible.",
-        loadingText: "Receiving compassionate guidance"
-    }
+const DEFAULT_THEME = {
+    bodyTheme: "default",
+    icon: "✦",
+    chip: "Guidance Mode",
+    kicker: "Life Wisdom",
+    quote: "Believe in yourself, stay positive, and keep moving forward — every step counts.",
+    verse: "",
+    responseTitle: "Bhagavanth's Guidance",
+    responseSubtitle: "Gentle wisdom for a better life",
+    supportText: "Bhagavanth will respond with calm, thoughtful guidance to help you in life.",
+    loadingText: "Receiving guidance"
 };
 
 function loadProfile() {
@@ -123,18 +95,41 @@ function requireProfile() {
 
 const userProfile = requireProfile();
 
-function getTheme(religion) {
-    return RELIGION_THEMES[religion] || RELIGION_THEMES.Hindu;
+function getTheme() {
+    return DEFAULT_THEME;
+}
+
+function applyHeaderPhoto() {
+    var photo = localStorage.getItem("mybhagavanth-profile-photo");
+    if (!mobileMenuButton) return;
+    var existingImg = mobileMenuButton.querySelector("img");
+    var svg = mobileMenuButton.querySelector("svg");
+    if (photo) {
+        if (existingImg) {
+            existingImg.src = photo;
+        } else {
+            var img = document.createElement("img");
+            img.src = photo;
+            img.alt = "Profile";
+            img.style.cssText = "width:100%;height:100%;object-fit:cover;border-radius:50%;";
+            mobileMenuButton.appendChild(img);
+        }
+        if (svg) svg.style.display = "none";
+    } else {
+        if (existingImg) existingImg.remove();
+        if (svg) svg.style.display = "";
+    }
 }
 
 function hydrateProfileUI(profile) {
-    const theme = getTheme(profile.religion);
-    document.body.dataset.religion = theme.bodyTheme;
+    const theme = getTheme();
     heroKicker.textContent = theme.kicker;
     heroQuote.textContent = `“${theme.quote}”`;
     heroVerse.textContent = theme.verse;
     responseAvatar.textContent = theme.icon;
-    mobileHeaderAvatar.textContent = theme.icon;
+    if (mobileHeaderAvatar) {
+        mobileHeaderAvatar.textContent = theme.icon;
+    }
     if (desktopBrandMark) {
         desktopBrandMark.textContent = theme.icon;
     }
@@ -142,17 +137,22 @@ function hydrateProfileUI(profile) {
     responseSubtitle.textContent = theme.responseSubtitle;
     supportText.textContent = `${theme.supportText} Preferred language: ${profile.languagePreference}.`;
     mobileDrawerName.textContent = profile.fullName;
-    mobileDrawerMeta.textContent = `${profile.religion} • ${profile.languagePreference}`;
+    mobileDrawerMeta.textContent = profile.languagePreference;
     mobileProfileName.textContent = profile.fullName;
     mobileProfileBadge.textContent = theme.chip;
-    mobileProfileReligion.textContent = profile.religion;
     mobileProfileLanguage.textContent = profile.languagePreference;
     mobileProfileGender.textContent = profile.gender;
     mobileLanguageSelect.value = profile.languagePreference;
     typingAnimationToggle.checked = loadTypingPreference();
     promptInput.placeholder = profile.languagePreference === "Kannada"
-        ? "ನಿಮ್ಮ ಹೃದಯದ ಪ್ರಶ್ನೆಯನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ..."
-        : "Share your question, concern, or life situation here...";
+        ? "ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಬರೆಯಿರಿ..."
+        : "Type your message...";
+
+    document.querySelectorAll(".chat-bubble--welcome .chat-bubble__avatar").forEach(function(el) {
+        el.textContent = theme.icon;
+    });
+
+    applyHeaderPhoto();
 }
 
 function setupDesktopHeader() {
@@ -169,7 +169,7 @@ function setupDesktopHeader() {
 }
 
 function setStatus(message, type = "") {
-    statusPanel.className = "status-panel";
+    statusPanel.className = "chat-status";
     statusPanel.textContent = message;
 
     if (type) {
@@ -178,14 +178,9 @@ function setStatus(message, type = "") {
 }
 
 function showLoading() {
-    const theme = getTheme(userProfile.religion);
-    statusPanel.className = "status-panel";
-    statusPanel.innerHTML = [
-        '<div class="loading">',
-        `<span>${theme.loadingText}</span>`,
-        '<span class="loading-dots" aria-hidden="true"><span></span><span></span><span></span></span>',
-        '</div>'
-    ].join("");
+    statusPanel.className = "chat-status";
+    statusPanel.textContent = "";
+    showTypingIndicator();
 }
 
 function sanitizeText(value) {
@@ -237,17 +232,100 @@ function pushHistory(question, answer) {
     renderHistory();
 }
 
-function revealResponse() {
-    responseCard.classList.remove("hidden");
-    responseCard.classList.remove("reveal");
-    void responseCard.offsetWidth;
-    responseCard.classList.add("reveal");
+function formatChatTime() {
+    return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
-function typeResponse(text) {
+function scrollChatToBottom() {
+    if (chatMessages) {
+        chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: "smooth" });
+    }
+}
+
+function appendUserMessage(text) {
+    const bubble = document.createElement("div");
+    bubble.className = "chat-bubble chat-bubble--user";
+
+    const body = document.createElement("div");
+    body.className = "chat-bubble__body";
+
+    const p = document.createElement("p");
+    p.className = "chat-bubble__text";
+    p.textContent = text;
+
+    const time = document.createElement("span");
+    time.className = "chat-bubble__time";
+    time.textContent = formatChatTime();
+
+    body.appendChild(p);
+    body.appendChild(time);
+    bubble.appendChild(body);
+    chatMessages.appendChild(bubble);
+    scrollChatToBottom();
+}
+
+function appendAIMessage() {
+    const theme = getTheme();
+    const bubble = document.createElement("div");
+    bubble.className = "chat-bubble chat-bubble--ai";
+
+    const avatarCol = document.createElement("div");
+    avatarCol.className = "chat-bubble__avatar-col";
+    const avatar = document.createElement("div");
+    avatar.className = "chat-bubble__avatar";
+    avatar.textContent = theme.icon;
+    avatarCol.appendChild(avatar);
+
+    const body = document.createElement("div");
+    body.className = "chat-bubble__body";
+
+    const p = document.createElement("p");
+    p.className = "chat-bubble__text";
+
+    const time = document.createElement("span");
+    time.className = "chat-bubble__time";
+    time.textContent = formatChatTime();
+
+    body.appendChild(p);
+    body.appendChild(time);
+    bubble.appendChild(avatarCol);
+    bubble.appendChild(body);
+    chatMessages.appendChild(bubble);
+    scrollChatToBottom();
+    return p;
+}
+
+function showTypingIndicator() {
+    removeTypingIndicator();
+    const theme = getTheme();
+    const indicator = document.createElement("div");
+    indicator.className = "chat-bubble chat-bubble--ai chat-typing-indicator";
+    indicator.id = "typingIndicator";
+
+    const avatarCol = document.createElement("div");
+    avatarCol.className = "chat-bubble__avatar-col";
+    const avatar = document.createElement("div");
+    avatar.className = "chat-bubble__avatar";
+    avatar.textContent = theme.icon;
+    avatarCol.appendChild(avatar);
+
+    const body = document.createElement("div");
+    body.className = "chat-bubble__body";
+    body.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+
+    indicator.appendChild(avatarCol);
+    indicator.appendChild(body);
+    chatMessages.appendChild(indicator);
+    scrollChatToBottom();
+}
+
+function removeTypingIndicator() {
+    const el = document.getElementById("typingIndicator");
+    if (el) el.remove();
+}
+
+function typeResponseInBubble(textElement, text) {
     const content = sanitizeText(text);
-    responseContent.textContent = "";
-    revealResponse();
 
     if (typingTimer) {
         clearInterval(typingTimer);
@@ -258,7 +336,8 @@ function typeResponse(text) {
     }
 
     if (!loadTypingPreference()) {
-        responseContent.textContent = content;
+        textElement.textContent = content;
+        scrollChatToBottom();
         return;
     }
 
@@ -266,12 +345,13 @@ function typeResponse(text) {
     const cursor = document.createElement("span");
     cursor.className = "cursor";
     cursor.textContent = "|";
-    responseContent.appendChild(cursor);
+    textElement.appendChild(cursor);
 
     typingTimer = window.setInterval(() => {
         index += 1;
-        responseContent.textContent = content.slice(0, index);
-        responseContent.appendChild(cursor);
+        textElement.textContent = content.slice(0, index);
+        textElement.appendChild(cursor);
+        scrollChatToBottom();
 
         if (index >= content.length) {
             clearInterval(typingTimer);
@@ -381,6 +461,9 @@ async function askBhagavanth() {
         return;
     }
 
+    appendUserMessage(message);
+    promptInput.value = "";
+    promptInput.style.height = "auto";
     askButton.disabled = true;
     showLoading();
 
@@ -394,7 +477,6 @@ async function askBhagavanth() {
                 message,
                 fullName: userProfile.fullName,
                 gender: userProfile.gender,
-                religion: userProfile.religion,
                 languagePreference: userProfile.languagePreference
             })
         });
@@ -412,10 +494,13 @@ async function askBhagavanth() {
             throw new Error(data.error || "Bhagavanth could not respond right now.");
         }
 
-        typeResponse(data.reply);
+        removeTypingIndicator();
+        const textEl = appendAIMessage();
+        typeResponseInBubble(textEl, data.reply);
         pushHistory(message, data.reply);
-        setStatus("Guidance received.", "status-success");
+        setStatus("");
     } catch (error) {
+        removeTypingIndicator();
         setStatus(error.message || "Something went wrong while contacting Bhagavanth.", "status-error");
     } finally {
         askButton.disabled = false;
@@ -425,9 +510,15 @@ async function askBhagavanth() {
 askButton.addEventListener("click", askBhagavanth);
 
 promptInput.addEventListener("keydown", (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+    if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
         askBhagavanth();
     }
+});
+
+promptInput.addEventListener("input", () => {
+    promptInput.style.height = "auto";
+    promptInput.style.height = Math.min(promptInput.scrollHeight, 120) + "px";
 });
 
 if (clearHistoryButton) {
@@ -495,3 +586,26 @@ renderHistory();
 setInitialSectionFromHash();
 updateInstallButtons();
 setupDesktopHeader();
+
+(function setupMobileKeyboardHandler() {
+    const chatApp = document.querySelector(".chat-app");
+    if (!chatApp || !window.visualViewport) return;
+
+    let resizeRaf = 0;
+
+    function onViewportResize() {
+        if (window.innerWidth > 768) {
+            chatApp.style.height = "";
+            return;
+        }
+        cancelAnimationFrame(resizeRaf);
+        resizeRaf = requestAnimationFrame(function () {
+            const vvh = window.visualViewport.height;
+            chatApp.style.height = Math.max(vvh - 160, 200) + "px";
+            scrollChatToBottom();
+        });
+    }
+
+    window.visualViewport.addEventListener("resize", onViewportResize);
+    window.visualViewport.addEventListener("scroll", onViewportResize);
+})();

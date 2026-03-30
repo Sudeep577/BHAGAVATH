@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyBhagavanth | Spiritual AI Guidance</title>
-    <meta name="description" content="Receive calm, dharmic guidance inspired by Lord Krishna through an AI-powered spiritual companion.">
+    <title>MyBhagavanth | AI Life Guidance</title>
+    <meta name="description" content="Receive calm, thoughtful guidance through an AI-powered life companion.">
     <meta name="theme-color" content="#0a1020">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -26,7 +26,7 @@
         <header id="desktopSiteHeader" class="desktop-site-header">
             <div class="desktop-site-header__inner">
                 <a href="index.html" class="desktop-brand">
-                    <span id="desktopBrandMark" class="desktop-brand__mark">ॐ</span>
+                    <span id="desktopBrandMark" class="desktop-brand__mark">✦</span>
                     <span>
                         <strong>MyBhagavanth</strong>
                         <small>Seek guidance, find peace</small>
@@ -37,28 +37,26 @@
                     <a href="index.html#chatSection" class="desktop-site-nav__link">Chat</a>
                     <a href="history.html" class="desktop-site-nav__link">History</a>
                     <a href="profile.html" class="desktop-site-nav__link">Profile</a>
+                    <a href="about.html" class="desktop-site-nav__link">About</a>
                 </nav>
             </div>
         </header>
 
-    <header class="mobile-app-header" aria-hidden="true">
-        <button id="mobileMenuButton" type="button" class="mobile-icon-button" aria-label="Open menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+    <header class="mobile-app-header">
         <div class="mobile-app-brand">
-            <p class="mobile-app-label">Divine App</p>
+            <p class="mobile-app-label"></p>
             <h2>MyBhagavanth</h2>
         </div>
-        <div id="mobileHeaderAvatar" class="mobile-header-avatar" aria-hidden="true">ॐ</div>
+        <button id="mobileMenuButton" type="button" class="mobile-icon-button mobile-profile-icon" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        </button>
     </header>
 
     <div id="mobileDrawerBackdrop" class="mobile-drawer-backdrop" aria-hidden="true"></div>
     <aside id="mobileDrawer" class="mobile-drawer" aria-hidden="true">
         <div class="mobile-drawer-head">
             <div>
-                <p class="mobile-drawer-label">Sacred Menu</p>
+                <p class="mobile-drawer-label">Menu</p>
                 <h3 id="mobileDrawerName">Seeker</h3>
                 <p id="mobileDrawerMeta" class="mobile-drawer-meta"></p>
             </div>
@@ -69,6 +67,7 @@
             <button type="button" class="mobile-drawer-link" data-app-route="profile">Profile</button>
             <button type="button" class="mobile-drawer-link" data-app-route="history">History</button>
             <button type="button" class="mobile-drawer-link" data-app-route="chat">Ask Bhagavanth</button>
+            <button type="button" class="mobile-drawer-link" data-app-route="about">About</button>
         </nav>
 
         <div class="mobile-settings-card">
@@ -99,44 +98,46 @@
     <main class="page-shell">
         <section id="homeSection" class="hero mobile-section" data-mobile-section="home">
             <div class="hero-content">
-                <p id="heroKicker" class="hero-kicker">Bhagavad Gita Wisdom</p>
+                <p id="heroKicker" class="hero-kicker">Life Wisdom</p>
                 <h1>MyBhagavanth</h1>
                 <p id="heroQuote" class="hero-quote">
-                    “You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions.”
+                    "Believe in yourself, stay positive, and keep moving forward — every step counts."
                 </p>
-                <p id="heroVerse" class="hero-verse">Bhagavad Gita 2.47</p>
+                <p id="heroVerse" class="hero-verse"></p>
             </div>
         </section>
 
             <div class="desktop-main-grid desktop-main-grid--single">
-                <section id="chatSection" class="app-card mobile-section" data-mobile-section="chat">
-                    <div class="input-panel">
-                        <label class="input-label" for="promptInput">Share your question, doubt, or life problem</label>
-                        <textarea
-                            id="promptInput"
-                            rows="5"
-                            placeholder="Ask in English or Kannada. For example: I feel confused about my purpose in life..."
-                        ></textarea>
-                        <div class="input-actions">
-                            <p id="supportText" class="support-text">Kannada and English are supported.</p>
-                            <button id="askButton" type="button">Ask Bhagavanth</button>
+                <section id="chatSection" class="app-card chat-app mobile-section" data-mobile-section="chat">
+                    <div class="chat-header">
+                        <div id="responseAvatar" class="chat-header__avatar" aria-hidden="true">✦</div>
+                        <div class="chat-header__info">
+                            <p id="responseTitle" class="chat-header__name">Bhagavanth's Guidance</p>
+                            <p id="responseSubtitle" class="chat-header__status">Gentle wisdom for a better life</p>
                         </div>
                     </div>
 
-                    <div class="status-panel" id="statusPanel" aria-live="polite"></div>
-
-                    <section class="response-section">
-                        <div class="response-card hidden" id="responseCard">
-                            <div class="response-header">
-                                <div id="responseAvatar" class="avatar" aria-hidden="true">ॐ</div>
-                                <div>
-                                    <p id="responseTitle" class="response-title">Krishna's Guidance</p>
-                                    <p id="responseSubtitle" class="response-subtitle">Gentle wisdom rooted in dharma</p>
-                                </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-date-divider"><span>Today</span></div>
+                        <div class="chat-bubble chat-bubble--ai chat-bubble--welcome">
+                            <div class="chat-bubble__avatar-col">
+                                <div class="chat-bubble__avatar">✦</div>
                             </div>
-                            <div class="response-content" id="responseContent"></div>
+                            <div class="chat-bubble__body">
+                                <p class="chat-bubble__text" id="supportText">Bhagavanth will respond with calm, thoughtful guidance to help you in life.</p>
+                                <span class="chat-bubble__time">Welcome</span>
+                            </div>
                         </div>
-                    </section>
+                    </div>
+
+                    <div class="chat-status" id="statusPanel" aria-live="polite"></div>
+
+                    <div class="chat-input-bar">
+                        <textarea id="promptInput" rows="1" placeholder="Type your message..."></textarea>
+                        <button id="askButton" type="button" class="chat-send-btn" aria-label="Send message">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/></svg>
+                        </button>
+                    </div>
                 </section>
 
             </div>
@@ -147,13 +148,9 @@
                     <p class="user-bar-label">Profile</p>
                     <h2 id="mobileProfileName">Seeker</h2>
                 </div>
-                <div id="mobileProfileBadge" class="theme-chip">Sacred Mode</div>
+                <div id="mobileProfileBadge" class="theme-chip">Guidance Mode</div>
             </div>
             <div class="mobile-profile-grid">
-                <article class="mobile-profile-item">
-                    <span>Religion</span>
-                    <strong id="mobileProfileReligion">Hindu</strong>
-                </article>
                 <article class="mobile-profile-item">
                     <span>Language</span>
                     <strong id="mobileProfileLanguage">English</strong>

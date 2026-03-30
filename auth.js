@@ -1,42 +1,16 @@
 const PROFILE_STORAGE_KEY = "mybhagavanth-user-profile";
 
-const RELIGION_THEMES = {
-    Hindu: {
-        bodyTheme: "hindu",
-        icon: "ॐ",
-        kicker: "Bhagavad Gita Wisdom",
-        subtitle: "Speak your heart, receive divine guidance",
-        quote: "You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions.",
-        verse: "Bhagavad Gita 2.47",
-        heading: "Enter Divine Space",
-        cardCopy: "Step into Krishna-inspired guidance shaped by dharma, reflection, and inner steadiness.",
-        preview: "Krishna-inspired dark and gold design with Bhagavad Gita based wisdom, calm philosophical language, and dharmic guidance.",
-        loadingText: "Preparing your sacred profile..."
-    },
-    Muslim: {
-        bodyTheme: "muslim",
-        icon: "☪",
-        kicker: "Quranic Reflection",
-        subtitle: "Speak your heart, receive peaceful guidance",
-        quote: "Indeed, in the remembrance of Allah do hearts find rest.",
-        verse: "Quran 13:28",
-        heading: "Enter Peaceful Space",
-        cardCopy: "Step into a serene Islamic-inspired space shaped by mercy, ethics, patience, and peaceful direction.",
-        preview: "Elegant green spiritual design with Quran-inspired guidance, respectful tone, and peaceful ethical support.",
-        loadingText: "Preparing your peaceful profile..."
-    },
-    Christian: {
-        bodyTheme: "christian",
-        icon: "✝",
-        kicker: "Grace And Wisdom",
-        subtitle: "Speak your heart, receive compassionate guidance",
-        quote: "Come to me, all who are weary and burdened, and I will give you rest.",
-        verse: "Matthew 11:28",
-        heading: "Enter Graceful Space",
-        cardCopy: "Step into a gentle and luminous space shaped by biblical compassion, moral clarity, and faith-filled encouragement.",
-        preview: "Soft church-inspired design with Bible-based guidance, compassionate language, and faith-centered reassurance.",
-        loadingText: "Preparing your grace-filled profile..."
-    }
+const DEFAULT_THEME = {
+    bodyTheme: "default",
+    icon: "✦",
+    kicker: "Welcome",
+    subtitle: "Speak your heart, receive thoughtful guidance",
+    quote: "Believe in yourself, stay positive, and keep moving forward — every step counts.",
+    verse: "",
+    heading: "Get Started",
+    cardCopy: "Tell Bhagavanth who you are, so the guidance can feel more personal and meaningful.",
+    preview: "MyBhagavanth provides calm, thoughtful guidance to help you navigate life's challenges.",
+    loadingText: "Preparing your profile..."
 };
 
 const authForm = document.getElementById("authForm");
@@ -55,7 +29,6 @@ const authInstallButton = document.getElementById("authInstallButton");
 const fields = {
     fullName: document.getElementById("fullName"),
     gender: document.getElementById("gender"),
-    religion: document.getElementById("religion"),
     languagePreference: document.getElementById("languagePreference")
 };
 
@@ -73,13 +46,12 @@ function saveProfile(profile) {
     localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
 }
 
-function getTheme(religion) {
-    return RELIGION_THEMES[religion] || RELIGION_THEMES.Hindu;
+function getTheme() {
+    return DEFAULT_THEME;
 }
 
-function applyReligionPreview(religion) {
-    const theme = getTheme(religion);
-    document.body.dataset.religion = theme.bodyTheme;
+function applyPreview() {
+    const theme = getTheme();
     authKicker.textContent = theme.kicker;
     authSubtitle.textContent = theme.subtitle;
     authQuote.textContent = `“${theme.quote}”`;
@@ -119,7 +91,6 @@ function validateForm() {
     const profile = {
         fullName: fields.fullName.value.trim(),
         gender: fields.gender.value,
-        religion: fields.religion.value,
         languagePreference: fields.languagePreference.value
     };
 
@@ -135,11 +106,6 @@ function validateForm() {
         isValid = false;
     }
 
-    if (!profile.religion) {
-        setFieldError("religion", "Please choose your religion.");
-        isValid = false;
-    }
-
     if (!profile.languagePreference) {
         setFieldError("languagePreference", "Please select your language preference.");
         isValid = false;
@@ -150,20 +116,19 @@ function validateForm() {
 
 function populateForm(profile) {
     if (!profile) {
-        applyReligionPreview("Hindu");
+        applyPreview();
         return;
     }
 
     fields.fullName.value = profile.fullName || "";
     fields.gender.value = profile.gender || "";
-    fields.religion.value = profile.religion || "";
     fields.languagePreference.value = profile.languagePreference || "";
-    applyReligionPreview(profile.religion || "Hindu");
+    applyPreview();
     setStatus("Your saved profile is ready. You can update it anytime.", "status-success");
 }
 
-function showLoading(religion) {
-    const theme = getTheme(religion);
+function showLoading() {
+    const theme = getTheme();
     submitButton.disabled = true;
     submitButton.innerHTML = '<span class="auth-loading">Entering<span></span></span>';
     setStatus(theme.loadingText, "");
@@ -171,7 +136,7 @@ function showLoading(religion) {
 
 function resetButton() {
     submitButton.disabled = false;
-    submitButton.textContent = "Enter Divine Space";
+    submitButton.textContent = "Get Started";
 }
 
 function updateInstallButtonVisibility() {
@@ -202,20 +167,16 @@ authForm.addEventListener("submit", (event) => {
         return;
     }
 
-    showLoading(profile.religion);
+    showLoading();
 
     window.setTimeout(() => {
         saveProfile({
             ...profile,
             updatedAt: Date.now()
         });
-        setStatus("Profile saved. Entering your divine space...", "status-success");
+        setStatus("Profile saved. Let's get started...", "status-success");
         window.location.href = "index.html";
     }, 900);
-});
-
-fields.religion.addEventListener("change", () => {
-    applyReligionPreview(fields.religion.value || "Hindu");
 });
 
 authInstallButton.addEventListener("click", handleInstallClick);

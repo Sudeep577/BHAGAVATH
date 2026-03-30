@@ -1,10 +1,11 @@
-const CACHE_NAME = "mybhagavanth-static-v2";
+const CACHE_NAME = "mybhagavanth-static-v3";
 const STATIC_ASSETS = [
     "./",
     "./index.html",
     "./login.html",
     "./profile.html",
     "./history.html",
+    "./about.html",
     "./style.css",
     "./subpages.css",
     "./auth.css",
@@ -12,6 +13,7 @@ const STATIC_ASSETS = [
     "./auth.js",
     "./profile.js",
     "./history.js",
+    "./about.js",
     "./app-common.js",
     "./pwa.js",
     "./manifest.webmanifest",
